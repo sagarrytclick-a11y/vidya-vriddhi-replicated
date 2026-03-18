@@ -48,9 +48,8 @@ export function AdminSidebar() {
       )}>
         <div className="flex flex-col h-full">
           {/* Header */}
-          <div className="p-6 border-b flex items-center  border-gray-200">
+          <div className="p-6 border-b flex items-center justify-center border-gray-200">
             <Image src="/logo.png" alt="Vidya Vriddhi" width={90} height={90} />
-            <p className="text-[14px] font-bold text-center text-gray-900">Vidya Vriddhi</p>
           </div>
 
           {/* Navigation */}
