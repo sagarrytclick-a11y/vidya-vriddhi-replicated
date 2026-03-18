@@ -96,7 +96,7 @@ const fetchColleges = async (countrySlug?: string): Promise<College[]> => {
       <div className="py-16">
         <div className="max-w-7xl mx-auto px-4">
           <div className="text-center mb-12">
-            <div className="w-16 h-16 border-4 border-green-100 border-t-green-600 rounded-full animate-spin mx-auto mb-4"></div>
+            <div className="w-16 h-16 border-4 border-[#EF7D31]/20 border-t-[#EF7D31] rounded-full animate-spin mx-auto mb-4"></div>
             <p className="text-slate-500 font-bold uppercase tracking-widest text-xs">Loading Colleges...</p>
           </div>
         </div>
@@ -143,14 +143,14 @@ const fetchColleges = async (countrySlug?: string): Promise<College[]> => {
                 className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 z-10 bg-white rounded-full p-3 shadow-lg border border-slate-200 hover:bg-slate-50 transition-all duration-200 group"
                 aria-label="Previous colleges"
               >
-                <ChevronLeft size={20} className="text-slate-600 group-hover:text-green-600 transition-colors" />
+                <ChevronLeft size={20} className="text-slate-600 group-hover:text-[#EF7D31] transition-colors" />
               </button>
               <button
                 onClick={nextSlide}
                 className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 z-10 bg-white rounded-full p-3 shadow-lg border border-slate-200 hover:bg-slate-50 transition-all duration-200 group"
                 aria-label="Next colleges"
               >
-                <ChevronRight size={20} className="text-slate-600 group-hover:text-green-600 transition-colors" />
+                <ChevronRight size={20} className="text-slate-600 group-hover:text-[#EF7D31] transition-colors" />
               </button>
             </>
           )}
@@ -164,8 +164,19 @@ const fetchColleges = async (countrySlug?: string): Promise<College[]> => {
                 return null;
               }
               
-              // Debug log to see the college structure
-              console.log('College data:', college);
+              // Handle ranking - it could be string or object
+              let rankDisplay = undefined;
+              if (college.ranking) {
+                if (typeof college.ranking === 'string') {
+                  rankDisplay = `Rank ${college.ranking}`;
+                } else if (typeof college.ranking === 'object' && college.ranking !== null) {
+                  // If ranking is an object, try to get country_ranking or world_ranking
+                  rankDisplay = college.ranking.country_ranking || college.ranking.world_ranking || college.ranking.title;
+                  if (rankDisplay) {
+                    rankDisplay = `Rank ${rankDisplay}`;
+                  }
+                }
+              }
               
               const cardData = {
                 _id: college._id || Math.random().toString(),
@@ -173,7 +184,7 @@ const fetchColleges = async (countrySlug?: string): Promise<College[]> => {
                 slug: typeof college.slug === 'string' ? college.slug : college._id || Math.random().toString(),
                 banner_url: college.banner_url,
                 location: college.country_ref?.name || 'Unknown Location',
-                rank: college.ranking ? `Rank ${college.ranking}` : undefined,
+                rank: rankDisplay,
                 tuition: college.fees_structure?.courses?.[0]?.annual_tuition_fee || undefined,
                 fees: college.fees_structure?.courses?.[0]?.annual_tuition_fee ? 
                   parseInt(college.fees_structure.courses[0].annual_tuition_fee.replace(/[^0-9]/g, '')) : undefined,
@@ -183,9 +194,6 @@ const fetchColleges = async (countrySlug?: string): Promise<College[]> => {
                 employability: undefined,
                 tags: []
               }
-              
-              // Debug log to see the cardData structure
-              console.log('Card data:', cardData);
               
               return <CollegeCard key={college._id || Math.random().toString()} data={cardData} />
             })}
@@ -201,7 +209,7 @@ const fetchColleges = async (countrySlug?: string): Promise<College[]> => {
                 onClick={() => setCurrentIndex(index)}
                 className={`w-2 h-2 rounded-full transition-all duration-300 ${
                   index === currentIndex 
-                    ? 'bg-green-600 w-8' 
+                    ? 'bg-[#EF7D31] w-8' 
                     : 'bg-slate-300 hover:bg-slate-400'
                 }`}
                 aria-label={`Go to slide ${index + 1}`}
@@ -212,7 +220,7 @@ const fetchColleges = async (countrySlug?: string): Promise<College[]> => {
 
         {/* View All Button */}
         <div className="text-center mt-12">
-          <button className="inline-flex items-center gap-2 bg-slate-900 hover:bg-green-600 text-white font-black rounded-2xl transition-all duration-300 px-8 py-4 text-lg group">
+          <button className="inline-flex items-center gap-2 bg-[#EF7D31] hover:bg-[#4A90E2] text-white font-black rounded-2xl transition-all duration-300 px-8 py-4 text-lg group shadow-lg shadow-[#EF7D31]/20">
             View All Colleges
             <ChevronRight size={20} className="group-hover:translate-x-1 transition-transform" />
           </button>

@@ -31,7 +31,7 @@ export default function ComprehensiveServices() {
 
             <h2 className="text-4xl md:text-6xl font-black text-[#2E4053] leading-[1.1] tracking-tight">
               End-to-End <br />
-              <span className="text-[#F1C40F]">Global Excellence.</span>
+              <span className="text-[#EF7D31]">Global Excellence.</span>
             </h2>
             
             <p className="mt-8 text-lg md:text-xl text-[#95A5A6] leading-relaxed">
@@ -41,7 +41,7 @@ export default function ComprehensiveServices() {
 
           <Link
             href="/service"
-            className="group flex items-center gap-3 bg-[#2E4053] text-white px-8 py-4 rounded-2xl font-bold hover:bg-[#F1C40F] transition-all duration-300 shadow-xl"
+            className="group flex items-center gap-3 bg-[#2E4053] text-white px-8 py-4 rounded-2xl font-bold hover:bg-[#EF7D31] transition-all duration-300 shadow-xl"
           >
             Explore All Services
             <ArrowUpRight className="w-5 h-5 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
@@ -103,10 +103,9 @@ export default function ComprehensiveServices() {
 
           {/* Feature 4: Community (Image with overlay) */}
           <div className="md:col-span-3 lg:col-span-4 row-span-2 relative rounded-[2.5rem] overflow-hidden group">
-            <Image
-              src="https://images.pexels.com/photos/5673501/pexels-photo-5673501.jpeg?auto=compress&cs=tinysrgb&w=600"
+            <img
+              src="https://i.pinimg.com/736x/c1/1a/32/c11a32c43d30fa86bb5722344ae350cb.jpg"
               alt="Community"
-              fill
               className="object-cover group-hover:scale-110 transition-transform duration-700"
             />
             <div className="absolute inset-0 bg-linear-to-t from-[#1E212B] via-[#1E212B]/20 to-transparent p-8 flex flex-col justify-end">

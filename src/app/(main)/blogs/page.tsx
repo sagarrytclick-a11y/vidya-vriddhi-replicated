@@ -68,7 +68,7 @@ export default function BlogsPage() {
     return (
       <div className="min-h-screen bg-white flex items-center justify-center">
         <div className="text-center">
-          <div className="w-12 h-12 border-2 border-gray-200 border-t-gray-600 rounded-full animate-spin mx-auto mb-4"></div>
+          <div className="w-12 h-12 border-2 border-[#EF7D31]/20 border-t-[#EF7D31] rounded-full animate-spin mx-auto mb-4"></div>
           <p className="text-gray-500 text-sm">Loading articles...</p>
         </div>
       </div>
@@ -79,8 +79,8 @@ export default function BlogsPage() {
     return (
       <div className="min-h-screen bg-white flex items-center justify-center">
         <div className="text-center max-w-md mx-auto px-4">
-          <div className="w-12 h-12 bg-red-50 rounded-full flex items-center justify-center mx-auto mb-4">
-            <AlertCircle className="w-6 h-6 text-red-600" />
+          <div className="w-12 h-12 bg-[#EF7D31]/10 rounded-full flex items-center justify-center mx-auto mb-4">
+            <AlertCircle className="w-6 h-6 text-[#EF7D31]" />
           </div>
           <h2 className="text-xl font-semibold text-gray-900 mb-2">Failed to Load Articles</h2>
           <p className="text-gray-500 mb-6 text-sm">
@@ -88,7 +88,7 @@ export default function BlogsPage() {
           </p>
           <button 
             onClick={() => refetch()}
-            className="bg-gray-900 hover:bg-gray-800 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors"
+            className="bg-[#EF7D31] hover:bg-[#4A90E2] text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors shadow-lg shadow-[#EF7D31]/20"
           >
             <RefreshCw className="w-4 h-4 mr-2 inline" />
             Try Again
@@ -169,8 +169,8 @@ export default function BlogsPage() {
       <div className="max-w-6xl mx-auto px-4 py-6">
         {blogs.length === 0 ? (
           <div className="text-center py-16">
-            <div className="w-16 h-16 bg-gradient-to-br from-blue-100 to-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-              <FileText size={24} className="text-blue-600" />
+            <div className="w-16 h-16 bg-gradient-to-br from-[#EF7D31]/10 to-[#4A90E2]/10 rounded-full flex items-center justify-center mx-auto mb-4">
+              <FileText size={24} className="text-[#EF7D31]" />
             </div>
             <h3 className="text-lg font-semibold text-gray-900 mb-2">No articles found</h3>
             <p className="text-gray-700 text-sm font-medium">Try adjusting your search or filters</p>
@@ -180,11 +180,11 @@ export default function BlogsPage() {
             {blogs.map((blog) => (
               <div
                 key={blog._id}
-                className="bg-white border border-blue-100 rounded-xl p-6 hover:shadow-md hover:border-blue-200 transition-all duration-300"
+                className="bg-white border border-[#EF7D31]/20 rounded-xl p-6 hover:shadow-md hover:border-[#EF7D31] transition-all duration-300"
               >
                 <div className="flex flex-col md:flex-row gap-6">
                   {/* Article Image */}
-                  <div className="w-full md:w-48 h-32 bg-gradient-to-br from-blue-100 to-green-100 rounded-xl overflow-hidden flex-shrink-0">
+                  <div className="w-full md:w-48 h-32 bg-gradient-to-br from-[#EF7D31]/10 to-[#4A90E2]/10 rounded-xl overflow-hidden flex-shrink-0">
                     <img
                       src={blog.image || `https://picsum.photos/seed/${blog.slug}/300/200`}
                       alt={blog.title}
@@ -200,16 +200,16 @@ export default function BlogsPage() {
                       <div>
                         <h3 className="text-lg font-semibold text-gray-900 mb-1">{blog.title}</h3>
                         <div className="flex items-center gap-2 mb-2">
-                          <span className="inline-block px-2 py-1 bg-gradient-to-r from-blue-50 to-indigo-50 text-blue-800 text-xs font-medium rounded-lg border border-blue-200">
+                          <span className="inline-block px-2 py-1 bg-gradient-to-r from-[#EF7D31]/10 to-[#EF7D31]/20 text-[#EF7D31] text-xs font-medium rounded-lg border border-[#EF7D31]/30">
                             {blog.category}
                           </span>
-                          <div className="flex items-center text-blue-700 text-xs font-medium">
+                          <div className="flex items-center text-[#EF7D31] text-xs font-medium">
                             <Calendar size={12} className="mr-1" />
                             {blog.published_at ? new Date(blog.published_at).toLocaleDateString() : new Date(blog.createdAt).toLocaleDateString()}
                           </div>
                         </div>
                       </div>
-                      <span className="inline-block px-3 py-1 bg-gradient-to-r from-green-500 to-emerald-500 text-white text-sm font-medium rounded-full">
+                      <span className="inline-block px-3 py-1 bg-gradient-to-r from-[#EF7D31] to-[#4A90E2] text-white text-sm font-medium rounded-full">
                         Published
                       </span>
                     </div>
@@ -219,18 +219,18 @@ export default function BlogsPage() {
                     </p>
 
                     <div className="flex flex-wrap gap-4 text-sm text-gray-700 mb-4">
-                      <div className="flex items-center gap-1 text-blue-700 font-medium">
+                      <div className="flex items-center gap-1 text-[#EF7D31] font-medium">
                         <User size={14} />
                         <span>{blog.author || 'Vidya Vriddhi Team'}</span>
                       </div>
                       {blog.read_time && (
-                        <div className="flex items-center gap-1 text-green-700 font-medium">
+                        <div className="flex items-center gap-1 text-[#4A90E2] font-medium">
                           <Clock size={14} />
                           <span>{blog.read_time} min read</span>
                         </div>
                       )}
                       {blog.views && (
-                        <div className="flex items-center gap-1 text-purple-700 font-medium">
+                        <div className="flex items-center gap-1 text-[#EF7D31] font-medium">
                           <Eye size={14} />
                           <span>{blog.views} views</span>
                         </div>
@@ -241,12 +241,12 @@ export default function BlogsPage() {
                     {blog.tags && blog.tags.length > 0 && (
                       <div className="flex flex-wrap gap-2 mb-4">
                         {blog.tags.slice(0, 3).map((tag, index) => (
-                          <span key={`${tag}-${index}`} className="inline-block px-2 py-1 bg-gradient-to-r from-gray-50 to-slate-50 text-gray-700 text-xs font-medium rounded-lg border border-gray-200">
+                          <span key={`${tag}-${index}`} className="inline-block px-2 py-1 bg-gradient-to-r from-[#EF7D31]/10 to-[#EF7D31]/20 text-[#EF7D31] text-xs font-medium rounded-lg border border-[#EF7D31]/30">
                             #{tag}
                           </span>
                         ))}
                         {blog.tags.length > 3 && (
-                          <span className="inline-block px-2 py-1 bg-gradient-to-r from-gray-50 to-slate-50 text-gray-600 text-xs font-medium rounded-lg border border-gray-200">
+                          <span className="inline-block px-2 py-1 bg-gradient-to-r from-[#EF7D31]/5 to-[#EF7D31]/10 text-[#EF7D31]/70 text-xs font-medium rounded-lg border border-[#EF7D31]/20">
                             +{blog.tags.length - 3} more
                           </span>
                         )}
@@ -255,9 +255,9 @@ export default function BlogsPage() {
 
                     <div className="flex items-center justify-between">
                       <Link href={`/blogs/${blog.slug}`}>
-                        <button className="text-blue-700 hover:text-blue-800 font-semibold text-sm transition-colors flex items-center gap-1">
+                        <button className="text-[#EF7D31] hover:text-[#4A90E2] font-semibold text-sm transition-colors flex items-center gap-1">
                           Read Article
-                          <span className="text-blue-600">→</span>
+                          <span className="text-[#EF7D31]">→</span>
                         </button>
                       </Link>
                     </div>
@@ -330,7 +330,7 @@ export default function BlogsPage() {
 
         {/* End of results */}
         {blogs.length > 0 && (
-          <div className="text-center py-8 border-t border-blue-100 mt-8">
+          <div className="text-center py-8 border-t border-[#EF7D31]/20 mt-8">
             <p className="text-gray-700 text-sm font-medium">
               Showing all {totalCount} articles
               {searchTerm && ` for "${searchTerm}"`}
