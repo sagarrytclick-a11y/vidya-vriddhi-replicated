@@ -66,7 +66,7 @@ const CountryPage = () => {
   if (loading) return (
     <div className="min-h-screen bg-slate-50 flex items-center justify-center">
       <div className="flex flex-col items-center gap-4">
-        <div className="w-12 h-12 border-4 border-blue-600/20 border-t-blue-600 rounded-full animate-spin" />
+        <div className="w-12 h-12 border-4 border-[#EF7D31]/20 border-t-[#EF7D31] rounded-full animate-spin" />
         <p className="text-slate-400 font-bold text-[10px] uppercase tracking-[0.3em]">Charting your path...</p>
       </div>
     </div>
@@ -75,10 +75,10 @@ const CountryPage = () => {
   if (!country) return null
 
   const stats = [
-    { label: "Global Safety", val: "Ranked Top 15", icon: ShieldCheck, color: "text-blue-600", bg: "bg-blue-50" },
-    { label: "Est. Living", val: "$450/mo", icon: Wallet, color: "text-indigo-600", bg: "bg-indigo-50" },
-    { label: "Visa Success", val: "99.1%", icon: FileCheck, color: "text-blue-700", bg: "bg-blue-100/50" },
-    { label: "Post-Study", val: "Work Permit", icon: Briefcase, color: "text-sky-600", bg: "bg-sky-50" },
+    { label: "Global Safety", val: "Ranked Top 15", icon: ShieldCheck, color: "text-[#EF7D31]", bg: "bg-[#EF7D31]/10" },
+    { label: "Est. Living", val: "$450/mo", icon: Wallet, color: "text-[#4A90E2]", bg: "bg-[#4A90E2]/10" },
+    { label: "Visa Success", val: "99.1%", icon: FileCheck, color: "text-[#EF7D31]", bg: "bg-[#EF7D31]/10" },
+    { label: "Post-Study", val: "Work Permit", icon: Briefcase, color: "text-[#4A90E2]", bg: "bg-[#4A90E2]/10" },
   ]
 
   const roadmap = [
@@ -94,18 +94,18 @@ const CountryPage = () => {
       <section className="relative h-[65vh] min-h-[550px] flex items-center justify-center overflow-hidden bg-[#020617]">
         {/* Deep Blue/Indigo Orbs */}
         <div className="absolute inset-0 overflow-hidden">
-          <div className="absolute top-[-20%] left-[-10%] w-[60%] h-[60%] bg-blue-600/20 rounded-full blur-[140px]" />
-          <div className="absolute bottom-[-20%] right-[-10%] w-[60%] h-[60%] bg-indigo-600/20 rounded-full blur-[140px]" />
+          <div className="absolute top-[-20%] left-[-10%] w-[60%] h-[60%] bg-[#EF7D31]/20 rounded-full blur-[140px]" />
+          <div className="absolute bottom-[-20%] right-[-10%] w-[60%] h-[60%] bg-[#4A90E2]/20 rounded-full blur-[140px]" />
         </div>
 
         <div className="relative z-10 max-w-7xl mx-auto px-6 text-center">
           <motion.div 
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
-            className="inline-flex items-center gap-3 px-5 py-2 rounded-full bg-blue-500/10 border border-blue-400/20 backdrop-blur-xl mb-8"
+            className="inline-flex items-center gap-3 px-5 py-2 rounded-full bg-[#EF7D31]/10 border border-[#EF7D31]/20 backdrop-blur-xl mb-8"
           >
             <span className="text-2xl">{country.flag}</span>
-            <span className="text-blue-200 font-bold text-xs uppercase tracking-[0.25em]">Global Medical Hub</span>
+            <span className="text-[#EF7D31]/80 font-bold text-xs uppercase tracking-[0.25em]">Global Medical Hub</span>
           </motion.div>
           
           <motion.h1 
@@ -113,7 +113,7 @@ const CountryPage = () => {
             animate={{ opacity: 1, scale: 1 }}
             className="text-6xl md:text-9xl font-black text-white tracking-tighter mb-8"
           >
-            Study in <span className="bg-gradient-to-r from-blue-400 to-indigo-400 bg-clip-text text-transparent">{country.name}</span>
+            Study in <span className="bg-gradient-to-r from-[#FFA07A] to-[#FFC107] bg-clip-text text-transparent">{country.name}</span>
           </motion.h1>
 
           <motion.p 
@@ -134,7 +134,7 @@ const CountryPage = () => {
             <motion.div 
               key={i}
               whileHover={{ y: -8, boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.1)" }}
-              className="bg-white p-8 rounded-[2.5rem] shadow-xl shadow-blue-900/5 border border-blue-50 group"
+              className="bg-white p-8 rounded-[2.5rem] shadow-xl shadow-[#EF7D31]/5 border border-[#EF7D31]/10 group"
             >
               <div className={`${stat.bg} w-14 h-14 rounded-2xl flex items-center justify-center mb-6`}>
                 <stat.icon className={`w-6 h-6 ${stat.color}`} />
@@ -154,7 +154,7 @@ const CountryPage = () => {
             {/* Why Section */}
             <div>
               <div className="flex items-center gap-3 mb-8">
-                <div className="w-12 h-12 bg-blue-600 rounded-2xl flex items-center justify-center text-white shadow-lg shadow-blue-200">
+                <div className="w-12 h-12 bg-[#EF7D31] rounded-2xl flex items-center justify-center text-white shadow-lg shadow-[#EF7D31]/20">
                   <Compass size={24} />
                 </div>
                 <h2 className="text-4xl font-black tracking-tight text-slate-900">Education Excellence</h2>
@@ -172,8 +172,8 @@ const CountryPage = () => {
                     { title: "No Entrance", desc: "Direct admission based on academic scores", icon: Sparkles },
                     { title: "PR Options", desc: "Easy path to residency and local practice", icon: MapPin },
                   ].map((item, i) => (
-                    <div key={i} className="flex gap-4 p-6 rounded-[2rem] bg-blue-50/50 border border-blue-100/50 hover:bg-white hover:border-blue-200 hover:shadow-md transition-all">
-                      <div className="flex-shrink-0 w-10 h-10 bg-white rounded-xl shadow-sm flex items-center justify-center text-blue-600">
+                    <div key={i} className="flex gap-4 p-6 rounded-[2rem] bg-[#EF7D31]/5 border border-[#EF7D31]/10 hover:bg-white hover:border-[#EF7D31]/20 hover:shadow-md transition-all">
+                      <div className="flex-shrink-0 w-10 h-10 bg-white rounded-xl shadow-sm flex items-center justify-center text-[#EF7D31]">
                         <item.icon size={20} />
                       </div>
                       <div>
@@ -189,7 +189,7 @@ const CountryPage = () => {
             {/* ROADMAP SECTION */}
             <div>
               <div className="flex items-center gap-3 mb-8">
-                <div className="w-12 h-12 bg-indigo-600 rounded-2xl flex items-center justify-center text-white">
+                <div className="w-12 h-12 bg-[#4A90E2] rounded-2xl flex items-center justify-center text-white">
                   <Plane size={24} />
                 </div>
                 <h3 className="text-3xl font-black text-slate-900">Admission Roadmap</h3>
@@ -201,7 +201,7 @@ const CountryPage = () => {
                 {roadmap.map((item, i) => (
                   <div key={i} className="relative p-6 bg-white rounded-3xl border border-slate-100">
                     <span className="text-4xl font-black text-slate-100 absolute top-4 right-6">{item.step}</span>
-                    <h4 className="font-bold text-blue-600 mb-2 relative z-10">{item.title}</h4>
+                    <h4 className="font-bold text-[#EF7D31] mb-2 relative z-10">{item.title}</h4>
                     <p className="text-xs text-slate-500 font-medium leading-relaxed">{item.desc}</p>
                   </div>
                 ))}
@@ -212,18 +212,18 @@ const CountryPage = () => {
           {/* SIDEBAR CTA */}
           <div className="lg:col-span-4">
             <div className="sticky top-24 space-y-6">
-              <Card className="border-none bg-gradient-to-br from-blue-700 to-indigo-900 rounded-[3rem] overflow-hidden text-white shadow-2xl shadow-blue-200">
+              <Card className="border-none bg-gradient-to-br from-[#EF7D31] to-[#4A90E2] rounded-[3rem] overflow-hidden text-white shadow-2xl shadow-[#EF7D31]/20">
                 <CardContent className="p-10 relative">
                   <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 blur-3xl rounded-full" />
                   <h3 className="text-3xl font-black mb-4 leading-tight">Start Your Journey Today</h3>
-                  <p className="text-blue-100/70 mb-10 font-medium text-sm leading-relaxed">
+                  <p className="text-white/70 mb-10 font-medium text-sm leading-relaxed">
                     Consult with our {country.name} admission experts and get your eligibility report within 24 hours.
                   </p>
                   
                   <div className="space-y-4">
                     <Button 
                       onClick={openModal}
-                      className="w-full h-16 rounded-2xl bg-white text-blue-700 hover:bg-blue-50 font-black text-lg shadow-xl transition-all group"
+                      className="w-full h-16 rounded-2xl bg-white text-[#EF7D31] font-black text-lg shadow-xl  group"
                     >
                       Book Free Slot
                       <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
@@ -237,7 +237,7 @@ const CountryPage = () => {
               </Card>
 
               <div className="p-8 bg-white rounded-[2.5rem] border border-slate-100 shadow-sm flex items-center gap-4">
-                <div className="w-12 h-12 bg-blue-50 rounded-2xl flex items-center justify-center text-blue-600">
+                <div className="w-12 h-12 bg-[#EF7D31]/10 rounded-2xl flex items-center justify-center text-[#EF7D31]">
                    <GraduationCap size={24} />
                 </div>
                 <div>

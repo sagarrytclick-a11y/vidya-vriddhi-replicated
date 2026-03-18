@@ -17,10 +17,13 @@ import {
   ChevronRight
 } from 'lucide-react'
 import { useBlog } from '@/hooks/useBlogs'
+import { useFormModal } from "@/context/FormModalContext";
 
 const BlogDetailPage = () => {
   const params = useParams()
   const slug = params.slug as string
+
+  const { openModal } = useFormModal();
   
   const { 
     data: blog, 
@@ -33,7 +36,7 @@ const BlogDetailPage = () => {
     return (
       <div className="min-h-screen bg-white flex items-center justify-center">
         <div className="text-center">
-          <div className="w-16 h-16 border-4 border-blue-100 border-t-blue-600 rounded-full animate-spin mx-auto mb-4"></div>
+          <div className="w-16 h-16 border-4 border-[#EF7D31]/20 border-t-[#EF7D31] rounded-full animate-spin mx-auto mb-4"></div>
           <p className="text-slate-400 font-bold uppercase tracking-[0.2em] text-[10px]">Fetching Intelligence...</p>
         </div>
       </div>
@@ -43,18 +46,18 @@ const BlogDetailPage = () => {
   if (error || !blog) {
     return (
       <div className="min-h-screen bg-white flex items-center justify-center p-6">
-        <div className="text-center max-w-md bg-slate-50 p-12 rounded-[3rem] border border-slate-100">
-          <div className="w-20 h-20 bg-blue-50 rounded-full flex items-center justify-center mx-auto mb-6">
-            <FileText size={32} className="text-blue-600" />
+        <div className="text-center max-w-md bg-[#EF7D31]/5 p-12 rounded-[3rem] border border-[#EF7D31]/20">
+          <div className="w-20 h-20 bg-[#EF7D31]/10 rounded-full flex items-center justify-center mx-auto mb-6">
+            <FileText size={32} className="text-[#EF7D31]" />
           </div>
           <h2 className="text-2xl font-black text-slate-900 mb-2 italic">Article Unavailable</h2>
           <p className="text-slate-500 mb-8 font-medium">The resource you're looking for has moved or no longer exists in our 2026 directory.</p>
           <div className="flex flex-col gap-3">
-            <Button onClick={() => refetch()} className="bg-blue-600 hover:bg-slate-900 text-white rounded-2xl h-12 font-bold transition-all">
+            <Button onClick={() => refetch()} className="bg-[#EF7D31] hover:bg-[#4A90E2] text-white rounded-2xl h-12 font-black transition-all shadow-lg shadow-[#EF7D31]/20">
               Retry Connection
             </Button>
             <Link href="/blogs">
-              <Button variant="ghost" className="text-blue-600 font-bold">Return to Library</Button>
+              <Button variant="ghost" className="text-[#EF7D31] font-bold hover:bg-[#EF7D31]/10">Return to Library</Button>
             </Link>
           </div>
         </div>
@@ -67,15 +70,15 @@ const BlogDetailPage = () => {
       {/* Top Progress Navigation */}
       <div className="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-slate-100">
         <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
-          <Link href="/blogs" className="group flex items-center gap-2 text-slate-500 hover:text-blue-600 transition-colors">
+          <Link href="/blogs" className="group flex items-center gap-2 text-slate-500 hover:text-[#EF7D31] transition-colors">
             <ArrowLeft size={18} className="group-hover:-translate-x-1 transition-transform" />
             <span className="text-xs font-black uppercase tracking-widest">Back to Insights</span>
           </Link>
           {/* <div className="flex gap-4">
-            <button className="p-2 hover:bg-slate-50 rounded-full transition-colors text-slate-400 hover:text-blue-600">
+            <button className="p-2 hover:bg-slate-50 rounded-full transition-colors text-slate-400 hover:text-[#EF7D31]">
               <Share2 size={18} />
             </button>
-            <button className="p-2 hover:bg-slate-50 rounded-full transition-colors text-slate-400 hover:text-blue-600">
+            <button className="p-2 hover:bg-slate-50 rounded-full transition-colors text-slate-400 hover:text-[#EF7D31]">
               <Bookmark size={18} />
             </button>
           </div> */}
@@ -91,12 +94,12 @@ const BlogDetailPage = () => {
               
               {/* Category & Tags */}
               <div>
-                <Badge className="bg-blue-600 text-white hover:bg-blue-700 border-none px-6 py-2 rounded-full text-[10px] font-black uppercase tracking-[0.15em] mb-6">
+                <Badge className="bg-[#EF7D31] text-white hover:bg-[#4A90E2] border-none px-6 py-2 rounded-full text-[10px] font-black uppercase tracking-[0.15em] mb-6">
                   {blog.category}
                 </Badge>
                 <div className="flex flex-wrap gap-2 mt-4">
                   {blog.tags.map((tag) => (
-                    <span key={tag} className="text-[11px] font-bold text-blue-600 bg-blue-50 px-3 py-1.5 rounded-xl border border-blue-100/50">
+                    <span key={tag} className="text-[11px] font-bold text-[#EF7D31] bg-[#EF7D31]/10 px-3 py-1.5 rounded-xl border border-[#EF7D31]/20">
                       #{tag}
                     </span>
                   ))}
@@ -104,9 +107,9 @@ const BlogDetailPage = () => {
               </div>
 
               {/* Author Card */}
-              <div className="p-8 bg-slate-50 rounded-[2.5rem] border border-slate-100">
+              <div className="p-8 bg-[#EF7D31]/5 rounded-[2.5rem] border border-[#EF7D31]/20">
                 <div className="flex items-center gap-4 mb-6">
-                  <div className="w-12 h-12 bg-blue-600 rounded-2xl flex items-center justify-center text-white font-black text-xl shadow-lg shadow-blue-200">
+                  <div className="w-12 h-12 bg-[#EF7D31] rounded-2xl flex items-center justify-center text-white font-black text-xl shadow-lg shadow-[#EF7D31]/20">
                     {blog.author?.[0] || 'A'}
                   </div>
                   <div>
@@ -134,9 +137,9 @@ const BlogDetailPage = () => {
                   <h3 className="text-xs font-black uppercase tracking-widest text-slate-400 px-2">Related Pathway Exams</h3>
                   <div className="grid gap-2">
                     {blog.related_exams.map((exam) => (
-                      <div key={exam} className="flex items-center justify-between p-4 bg-white border border-slate-100 rounded-2xl hover:border-blue-300 transition-colors group cursor-pointer">
+                      <div key={exam} className="flex items-center justify-between p-4 bg-white border border-slate-100 rounded-2xl hover:border-[#EF7D31] transition-colors group cursor-pointer">
                         <span className="text-sm font-bold text-slate-700">{exam}</span>
-                        <ChevronRight size={16} className="text-slate-300 group-hover:text-blue-600 transition-colors" />
+                        <ChevronRight size={16} className="text-slate-300 group-hover:text-[#EF7D31] transition-colors" />
                       </div>
                     ))}
                   </div>
@@ -152,7 +155,7 @@ const BlogDetailPage = () => {
             </h1>
 
             {blog.image && (
-              <div className="relative aspect-video w-full overflow-hidden rounded-[3rem] shadow-2xl shadow-blue-100/50 mb-12">
+              <div className="relative aspect-video w-full overflow-hidden rounded-[3rem] shadow-2xl shadow-[#EF7D31]/20 mb-12">
                 <img
                   src={blog.image.startsWith('http') ? blog.image : `/images/${blog.image}`}
                   alt={blog.title}
@@ -171,20 +174,20 @@ const BlogDetailPage = () => {
             </div>
 
             {/* Newsletter Callout */}
-            <div className="mt-20 p-10 bg-slate-900 rounded-[3rem] text-white relative overflow-hidden group">
-              <div className="absolute top-0 right-0 w-64 h-64 bg-blue-600 rounded-full blur-[100px] opacity-20 group-hover:opacity-40 transition-opacity" />
+            <div className="mt-20 p-10 bg-[#EF7D31] rounded-[3rem] text-white relative overflow-hidden group">
+              <div className="absolute top-0 right-0 w-64 h-64 bg-[#4A90E2] rounded-full blur-[100px] opacity-20 group-hover:opacity-40 transition-opacity" />
               <div className="relative z-10">
                 <h3 className="text-2xl font-black mb-4">Want more insights like this?</h3>
-                <p className="text-slate-400 mb-8 max-w-md">Join 15,000+ students receiving the 2026 Global Education updates directly in their inbox.</p>
-                <div className="flex flex-col sm:flex-row gap-4">
-                   <Button className="bg-blue-600 hover:bg-blue-700 text-white rounded-2xl px-8 h-14 font-black">Get Started</Button>
+                <p className="text-white mb-8 max-w-md">Join 15,000+ students receiving the 2026 Global Education updates directly in their inbox.</p>
+                <div onClick={() => openModal()} className="flex flex-col sm:flex-row gap-4">
+                   <Button className="bg-white hover:bg-slate-100 text-[#EF7D31] rounded-2xl px-8 h-14 font-black shadow-lg shadow-white/20">Get Started</Button>
                 </div>
               </div>
             </div>
 
             <div className="mt-16 flex justify-center">
               <Link href="/blogs">
-                <Button variant="outline" className="border-2 border-slate-900 text-slate-900 hover:bg-slate-900 hover:text-white h-16 px-10 rounded-[2rem] font-black transition-all">
+                <Button variant="outline" className="border-2 border-[#EF7D31] text-[#EF7D31] hover:bg-[#EF7D31] hover:text-white h-16 px-10 rounded-[2rem] font-black transition-all">
                   Browse Full Archives
                 </Button>
               </Link>
