@@ -86,9 +86,9 @@ const fetchRelatedColleges = async (slug: string): Promise<College[]> => {
 
   if (isError) {
     return (
-      <div className="text-center py-20 bg-gradient-to-br from-slate-50 to-slate-100 rounded-[3rem] border-2 border-dashed border-slate-200">
-        <div className="w-20 h-20 bg-red-50 rounded-full flex items-center justify-center mx-auto mb-6">
-          <GraduationCap className="w-10 h-10 text-red-500" />
+      <div className="text-center py-20 bg-gradient-to-br from-slate-50 to-[#EF7D31]/10 rounded-[3rem] border-2 border-dashed border-[#EF7D31]/20">
+        <div className="w-20 h-20 bg-[#EF7D31]/10 rounded-full flex items-center justify-center mx-auto mb-6">
+          <GraduationCap className="w-10 h-10 text-[#EF7D31]" />
         </div>
         <h3 className="text-2xl font-bold text-slate-900 mb-3">Error Loading Related Colleges</h3>
         <p className="text-slate-500 mb-4">{error?.message}</p>
@@ -96,7 +96,7 @@ const fetchRelatedColleges = async (slug: string): Promise<College[]> => {
           Please try again later or explore our complete collection of top-ranked universities
         </p>
         <Link href="/colleges">
-          <Button className="bg-green-600 hover:bg-green-700 text-white font-bold px-8 py-4 rounded-2xl h-14 flex items-center gap-3 transition-all duration-300 group">
+          <Button className="bg-[#EF7D31] hover:bg-[#4A90E2] text-white font-bold px-8 py-4 rounded-2xl h-14 flex items-center gap-3 transition-all duration-300 group shadow-lg shadow-[#EF7D31]/20">
             Explore All Colleges
             <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
           </Button>
@@ -131,16 +131,16 @@ const fetchRelatedColleges = async (slug: string): Promise<College[]> => {
 
   if (colleges.length === 0) {
     return (
-      <div className="text-center py-20 bg-gradient-to-br from-slate-50 to-slate-100 rounded-[3rem] border-2 border-dashed border-slate-200">
-        <div className="w-20 h-20 bg-slate-50 rounded-full flex items-center justify-center mx-auto mb-6">
-          <GraduationCap className="w-10 h-10 text-slate-300" />
+      <div className="text-center py-20 bg-gradient-to-br from-slate-50 to-[#EF7D31]/10 rounded-[3rem] border-2 border-dashed border-[#EF7D31]/20">
+        <div className="w-20 h-20 bg-[#EF7D31]/10 rounded-full flex items-center justify-center mx-auto mb-6">
+          <GraduationCap className="w-10 h-10 text-[#EF7D31]" />
         </div>
         <h3 className="text-2xl font-bold text-slate-900 mb-3">No Related Colleges Found</h3>
         <p className="text-slate-500 mb-8 max-w-md mx-auto">
           Explore our complete collection of top-ranked universities worldwide
         </p>
         <Link href="/colleges">
-          <Button className="bg-green-600 hover:bg-green-700 text-white font-bold px-8 py-4 rounded-2xl h-14 flex items-center gap-3 transition-all duration-300 group">
+          <Button className="bg-[#EF7D31] hover:bg-[#4A90E2] text-white font-bold px-8 py-4 rounded-2xl h-14 flex items-center gap-3 transition-all duration-300 group shadow-lg shadow-[#EF7D31]/20">
             Explore All Colleges
             <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
           </Button>
@@ -158,7 +158,7 @@ const fetchRelatedColleges = async (slug: string): Promise<College[]> => {
 
         return (
           <div key={college._id} className="group">
-            <div className="relative overflow-hidden rounded-t-[2rem] shadow-[0_8px_30px_rgb(0,0,0,0.04)] group-hover:shadow-[0_20px_40px_rgba(0,0,0,0.08)] transition-all duration-500 bg-white">
+            <div className="relative overflow-hidden rounded-t-[2rem] shadow-[0_8px_30px_rgb(0,0,0,0.04)] group-hover:shadow-[0_20px_40px_rgba(239,125,49,0.15)] transition-all duration-500 bg-white border-2 border-slate-200 group-hover:border-[#EF7D31]">
               <div className="relative h-48 w-full overflow-hidden rounded-t-[2rem]">
                 <img
                   src={college.banner_url || `https://picsum.photos/seed/${college.slug}/400/300`}
@@ -198,7 +198,7 @@ const fetchRelatedColleges = async (slug: string): Promise<College[]> => {
               <div className="grid grid-cols-2 gap-4 mb-6">
                 <div className="flex flex-col gap-1">
                   <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest">Yearly Fees</span>
-                  <div className="flex items-center text-green-600 font-black text-lg">
+                  <div className="flex items-center text-[#EF7D31] font-black text-lg">
                     <DollarSign size={16} />
                     <span>
                       {college.fees 
@@ -220,7 +220,7 @@ const fetchRelatedColleges = async (slug: string): Promise<College[]> => {
               </div>
 
               <Link href={`/colleges/${college.slug}`} className="block">
-                <Button className="w-full h-14 bg-slate-900 hover:bg-green-600 text-white font-black rounded-2xl transition-all duration-300 group/btn flex items-center justify-center gap-2">
+                <Button className="w-full h-14 bg-[#EF7D31] hover:bg-[#ff6600] text-white font-black rounded-2xl transition-all duration-300 group/btn flex items-center justify-center gap-2 shadow-lg shadow-[#EF7D31]/20">
                   View Program Details
                   <ArrowRight size={18} className="group-hover/btn:translate-x-1 transition-transform" />
                 </Button>
