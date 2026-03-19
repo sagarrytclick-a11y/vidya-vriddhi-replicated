@@ -85,7 +85,7 @@ admissions: "admissions@vidyavriddhi.com",
 general: "Abhishek@vidyavriddhi.com",
     },
     address: {
-      office: "SO-2, Geniefolks Building (2nd Floor), Block A, Plot No. A-28, Sector 4, Noida, Uttar Pradesh - 201301",
+      office: "SO-1, Geniefolks Building (2nd Floor), Block A, Plot No. A-28, Sector 4, Noida, Uttar Pradesh - 201301",
       city: "Noida",
       country: "Uttar Pradesh 201301",
       mapLink: "https://goo.gl/maps/example",
