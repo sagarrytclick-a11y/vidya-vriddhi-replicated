@@ -101,7 +101,7 @@ const Hero: React.FC = () => {
                 <div className="absolute inset-0 bg-[#EF7D31] rounded-[2rem] rotate-3 transition-transform group-hover:rotate-1" />
                 <div className="relative h-full rounded-[2rem] overflow-hidden border-4 border-white shadow-xl">
                   <img
-                    src="https://i.pinimg.com/1200x/5b/5b/76/5b5b76ef67dd68bc22836887b7d2c132.jpg"
+                    src="https://i.pinimg.com/1200x/0a/c0/63/0ac063f9121d4de75e83edf5f7aed6ac.jpg"
                     alt="International Medical Students"
                     className="w-full h-full object-cover"
                   />

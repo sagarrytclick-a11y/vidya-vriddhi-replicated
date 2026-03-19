@@ -44,7 +44,7 @@ export default function VidiyaVridhiAdvantage() {
 
           <h2 className="text-4xl md:text-6xl font-black text-[#1E212B] leading-[1.05] mb-8">
             Your Future, <br />
-            <span className="text-transparent bg-clip-text bg-linear-to-r from-[#4A90E2] to-[#EF7D31]">Expertly Mapped.</span>
+            <span className="text-[#EF7D31]">Expertly Mapped.</span>
           </h2>
 
           <p className="text-[#64748B] text-lg md:text-xl mb-10 leading-relaxed max-w-xl">
@@ -78,7 +78,7 @@ export default function VidiyaVridhiAdvantage() {
         {/* Right Bento Grid Side */}
         <div className="w-full lg:w-1/2 grid grid-cols-1 md:grid-cols-2 gap-5">
           <FeatureCard 
-            className="bg-linear-to-br from-[#4A90E2] to-[#EF7D31] text-white md:col-span-2"
+            className="bg-[#EF7D31] text-white md:col-span-2"
             icon={<GraduationCap className="w-7 h-7 text-[#4A90E2]" />}
             title="Strategic Ivy-League Mentorship"
             description="Consult with mentors who are alumni of world's top 1% universities. We offer firsthand insights into campus life and recruitment."

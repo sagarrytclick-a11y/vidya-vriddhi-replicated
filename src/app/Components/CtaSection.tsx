@@ -28,7 +28,7 @@ const CtaSection: React.FC = () => {
 
         {/* Main Heading */}
         <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black tracking-tight text-white mb-4 sm:mb-6">
-          Ready to Take <span className="text-transparent bg-clip-text bg-linear-to-r from-[#4A90E2] to-[#EF7D31]">Leap?</span>
+          Ready to Take <span className="text-[#EF7D31]">Leap?</span>
         </h2>
 
         {/* Enhanced sub text */}

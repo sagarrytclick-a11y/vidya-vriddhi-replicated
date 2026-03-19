@@ -85,7 +85,7 @@ const FAQ = () => {
             </div>
             <h2 className="text-5xl lg:text-7xl font-black text-slate-900 tracking-tighter leading-none">
               Answers for Your <br />
-              <span className="text-transparent bg-clip-text bg-linear-to-r from-[#4A90E2] to-[#EF7D31]">FAQ.</span>
+              <span className="text-[#1E212B]">FAQ.</span>
             </h2>
           </div>
           <p className="text-[#64748B] font-medium text-lg max-w-sm border-l-2 border-[#4A90E2] pl-6 mb-2">

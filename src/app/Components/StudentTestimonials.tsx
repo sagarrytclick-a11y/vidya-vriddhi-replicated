@@ -73,7 +73,7 @@ export default function StudentTestimonials() {
 
           <h2 className="text-4xl md:text-6xl font-black text-[#1E212B] mb-6 tracking-tight">
             Success Stories from <br />
-            <span className="text-transparent bg-clip-text bg-linear-to-r from-[#4A90E2] to-[#EF7D31]">Our Global Indians</span>
+            <span className="text-[#EF7D31]">Our Global Indians</span>
           </h2>
 
           <div className="flex flex-wrap justify-center gap-6 text-[#64748B] font-medium italic">

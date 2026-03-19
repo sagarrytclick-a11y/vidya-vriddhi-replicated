@@ -51,7 +51,7 @@ export default function EducationStats() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {stats.map((stat, index) => (
             <div key={index} className="bg-[#FFFFFF] rounded-2xl p-8 shadow-lg border border-[#E2E8F0] hover:shadow-xl transition-all duration-300 hover:-translate-y-2">
-              <div className="w-16 h-16 bg-linear-to-br from-[#4A90E2] to-[#EF7D31] rounded-2xl flex items-center justify-center text-white mb-6">
+              <div className="w-16 h-16 bg-[#EF7D31] rounded-2xl flex items-center justify-center text-white mb-6">
                 <stat.icon size={32} />
               </div>
               <div className="text-3xl md:text-4xl font-black text-[#1E212B] mb-2">
