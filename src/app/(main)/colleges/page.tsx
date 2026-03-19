@@ -7,7 +7,6 @@ import { Search, MapPin, DollarSign, Clock, GraduationCap, Building, X, Loader2,
 import { useColleges } from '@/hooks/useColleges'
 import { getCountryName } from "@/lib/normalize"
 import { Button } from '@/components/ui/button'
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 
 interface College {
   _id: string
@@ -33,7 +32,7 @@ export default function CollegesPage() {
   const [selectedCollegeType, setSelectedCollegeType] = useState<string>('all')
   const [currentPage, setCurrentPage] = useState(1)
   const [debouncedSearchTerm, setDebouncedSearchTerm] = useState('')
-  
+
   // Use TanStack Query for pagination
   const {
     data,
@@ -42,7 +41,7 @@ export default function CollegesPage() {
     error,
     refetch
   } = useColleges(currentPage, debouncedSearchTerm, selectedCountry, selectedExam, selectedCollegeType)
-  
+
   const colleges = data?.colleges || []
   const totalCount = data?.total || 0
   const totalPages = data?.totalPages || 1
@@ -73,9 +72,9 @@ export default function CollegesPage() {
         })
         .filter(Boolean) as string[]
     )
-    
+
     const examSet = new Set(colleges.flatMap(college => college.exams))
-    
+
     return {
       countries: Array.from(countrySet),
       exams: Array.from(examSet)
@@ -84,9 +83,11 @@ export default function CollegesPage() {
 
   if (isLoading) {
     return (
-      <div className="min-h-screen bg-white flex items-center justify-center">
+      <div className="min-h-screen bg-[#EF7D31]/10 flex items-center justify-center">
         <div className="text-center">
-          <div className="w-12 h-12 border-2 border-gray-200 border-t-gray-600 rounded-full animate-spin mx-auto mb-4"></div>
+          <div className="text-center py-8 border-t border-[#EF7D31]/20 mt-8">
+            <div className="w-12 h-12 border-2 border-[#EF7D31]/20 border-t-[#EF7D31] rounded-full animate-spin mx-auto mb-4"></div>
+          </div>
           <p className="text-gray-500 text-sm">Loading colleges...</p>
         </div>
       </div>
@@ -97,16 +98,16 @@ export default function CollegesPage() {
     return (
       <div className="min-h-screen bg-white flex items-center justify-center">
         <div className="text-center max-w-md mx-auto px-4">
-          <div className="w-12 h-12 bg-red-50 rounded-full flex items-center justify-center mx-auto mb-4">
-            <AlertCircle className="w-6 h-6 text-red-600" />
+          <div className="w-12 h-12 bg-[#EF7D31]/10 rounded-full flex items-center justify-center mx-auto mb-4">
+            <AlertCircle className="w-6 h-6 text-[#EF7D31]" />
           </div>
           <h2 className="text-xl font-semibold text-gray-900 mb-2">Failed to Load Colleges</h2>
           <p className="text-gray-500 mb-6 text-sm">
             {error instanceof Error ? error.message : 'An unexpected error occurred'}
           </p>
-          <button 
+          <button
             onClick={() => refetch()}
-            className="bg-gray-900 hover:bg-gray-800 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors"
+            className="bg-[#EF7D31] hover:bg-[#4A90E2] text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors shadow-lg shadow-[#EF7D31]/20"
           >
             <RefreshCw className="w-4 h-4 mr-2 inline" />
             Try Again
@@ -204,7 +205,7 @@ export default function CollegesPage() {
       <div className="max-w-6xl mx-auto px-4 py-6">
         {colleges.length === 0 ? (
           <div className="text-center py-16">
-            <div className="w-16 h-16 bg-linear-to-br from-[#EF7D31]/10 to-[#EF7D31]/20 rounded-full flex items-center justify-center mx-auto mb-4">
+            <div className="w-16 h-16 bg-linear-to-br from-[#EF7D31]/10 to-[#4A90E2]/10 rounded-full flex items-center justify-center mx-auto mb-4">
               <Search size={24} className="text-[#EF7D31]" />
             </div>
             <h3 className="text-lg font-semibold text-gray-900 mb-2">No colleges found</h3>
@@ -215,11 +216,11 @@ export default function CollegesPage() {
             {colleges.map((college, index) => (
               <div
                 key={college._id}
-                className="bg-white border border-[#E2E8F0] rounded-xl p-6 hover:shadow-md hover:border-[#EF7D31] transition-all duration-300"
+                className="bg-white border border-[#EF7D31]/20 rounded-xl p-6 hover:shadow-md hover:border-[#EF7D31] transition-all duration-300"
               >
                 <div className="flex flex-col md:flex-row gap-6">
                   {/* College Image */}
-                  <div className="w-full md:w-48 h-32 bg-linear-to-br from-[#EF7D31]/10 to-[#EF7D31]/20 rounded-xl overflow-hidden shrink-0">
+                  <div className="w-full md:w-48 h-32 bg-linear-to-br from-[#EF7D31]/10 to-[#4A90E2]/10 rounded-xl overflow-hidden shrink-0">
                     <img
                       src={college.banner_url || `https://picsum.photos/seed/${college.slug}/300/200`}
                       alt={college.name}
@@ -239,7 +240,7 @@ export default function CollegesPage() {
                           {getCountryName(college.country_ref)}
                         </div>
                       </div>
-                      <span className="inline-block px-3 py-1 bg-linear-to-r from-[#EF7D31] to-[#EF7D31] text-white text-sm font-medium rounded-full">
+                      <span className="inline-block px-3 py-1 bg-linear-to-r from-[#EF7D31] to-[#4A90E2] text-white text-sm font-medium rounded-full">
                         Active
                       </span>
                     </div>
@@ -252,23 +253,23 @@ export default function CollegesPage() {
                       <div className="flex items-center gap-1 text-[#EF7D31] font-medium">
                         <DollarSign size={14} />
                         <span>
-                          {college.fees_structure?.courses?.[0]?.annual_tuition_fee ? 
-                            college.fees_structure.courses[0].annual_tuition_fee : 
+                          {college.fees_structure?.courses?.[0]?.annual_tuition_fee ?
+                            college.fees_structure.courses[0].annual_tuition_fee :
                             'Fees not available'
                           }
                         </span>
                       </div>
-                      <div className="flex items-center gap-1 text-[#4A90E2] font-medium">
+                      <div className="flex items-center gap-1 text-[#EF7D31] font-medium">
                         <Clock size={14} />
                         <span>
-                          {college.fees_structure?.courses?.[0]?.duration ? 
-                            `${college.fees_structure.courses[0].duration} years` : 
+                          {college.fees_structure?.courses?.[0]?.duration ?
+                            `${college.fees_structure.courses[0].duration} years` :
                             'Duration not available'
                           }
                         </span>
                       </div>
                       {college.establishment_year && (
-                        <div className="flex items-center gap-1 text-[#4A90E2] font-medium">
+                        <div className="flex items-center gap-1 text-[#EF7D31] font-medium">
                           <Building size={14} />
                           <span>Est. {college.establishment_year}</span>
                         </div>
@@ -307,7 +308,7 @@ export default function CollegesPage() {
 
         {/* Pagination Controls */}
         {totalPages > 1 && (
-          <div className="flex flex-col sm:flex-row items-center justify-between gap-4 p-4 bg-white rounded-lg border">
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-4 p-4 bg-white rounded-lg border border-[#EF7D31]/20">
             <div className="flex items-center gap-2">
               <span className="text-sm text-gray-600">
                 Showing {((currentPage - 1) * 12) + 1}-{Math.min(currentPage * 12, totalCount)} of {totalCount} colleges

@@ -107,9 +107,9 @@ const UniversityCard = ({ name, image, location, college_type ,  ranking, fees, 
 const ExamCard = ({ name, short_name, exam_type, conducting_body, exam_mode, frequency, description, slug }: ExamCardProps) => (
   <Link href={`/exams/${slug}`} className="group block h-full">
     <div className="relative h-full bg-[#FFFFFF] rounded-3xl border border-[#E2E8F0] shadow-sm hover:shadow-xl hover:border-[#4A90E2] transition-all duration-300 overflow-hidden flex flex-col">
-      <div className="h-2 w-full bg-linear-to-r from-[#4A90E2] via-[#4A90E2] to-[#EF7D31]" />
+      <div className="h-2 w-full bg-[#EF7D31]" />
       
-      <div className="p-6 flex-grow flex flex-col">
+      <div className="p-6 grow flex flex-col">
         <div className="flex justify-between items-start mb-4">
           <div className="w-12 h-12 bg-[#F8FAFC] rounded-2xl flex items-center justify-center text-[#4A90E2] group-hover:bg-[#4A90E2] group-hover:text-white transition-all duration-500">
             <FileText size={24} />

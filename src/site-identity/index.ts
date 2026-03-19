@@ -75,14 +75,14 @@ export const SITE_IDENTITY: SiteIdentity = {
   },
   contact: {
     phone: {
-      display: "+91-9958565973",
-      raw: "+919958565973",
-      additional: ["+91-9958565973", "+91-9958565973"]
+      display: "+91-9839865347",
+      raw: "+91-9569985339",
+      additional: ["+91-9839865347", "+91-9569985339"]
     },
     email: {
       support: "support@vidyavriddhi.com",
 admissions: "admissions@vidyavriddhi.com",
-general: "info@vidyavriddhi.com",
+general: "Abhishek@vidyavriddhi.com",
     },
     address: {
       office: "SO-2, Geniefolks Building (2nd Floor), Block A, Plot No. A-28, Sector 4, Noida, Uttar Pradesh - 201301",

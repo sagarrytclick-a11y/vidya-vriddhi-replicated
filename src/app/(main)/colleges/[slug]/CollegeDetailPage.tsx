@@ -487,7 +487,7 @@ const CollegeDetailPage: React.FC<CollegeDetailPageProps> = ({ slug }) => {
 
                     <CardTitle className="text-5xl sm:text-6xl font-black text-slate-900 tracking-tighter leading-[0.9]">
                       The <br />
-                      <span className="text-transparent bg-clip-text bg-linear-to-r from-[#EF7D31] to-[#4A90E2]">
+                      <span className="text-transparent bg-clip-text bg-[#EF7D31]">
                         Institution.
                       </span>
                     </CardTitle>
@@ -854,7 +854,7 @@ const CollegeDetailPage: React.FC<CollegeDetailPageProps> = ({ slug }) => {
                           </p>
                         </div>
 
-                        <button onClick={() => openModal() } className="flex-shrink-0 bg-slate-900 hover:bg-slate-800 text-white px-10 py-5 rounded-2xl font-black text-xs uppercase tracking-widest transition-all hover:scale-105 active:scale-95 shadow-2xl">
+                        <button onClick={() => openModal()} className="flex-shrink-0 bg-slate-900 hover:bg-slate-800 text-white px-10 py-5 rounded-2xl font-black text-xs uppercase tracking-widest transition-all hover:scale-105 active:scale-95 shadow-2xl">
                           View All Accreditations
                         </button>
                       </div>
