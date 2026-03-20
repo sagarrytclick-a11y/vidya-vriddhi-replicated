@@ -352,7 +352,7 @@ export default function AboutPage() {
 
       {/* Contact CTA */}
       <section className="max-w-7xl mx-auto px-6 py-24">
-        <div className="bg-linear-to-r from-[#EF7D31] to-[#4A90E2] rounded-3xl p-12 text-center text-white">
+        <div className="bg-[#EF7D31] rounded-3xl p-12 text-center text-white">
           <h2 className="text-4xl font-bold mb-6">
             Ready to Start Your MBBS Journey?
           </h2>

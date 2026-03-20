@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useCallback, useMemo } from 'react'
 import Link from 'next/link'
 import { Search, Building, Calendar, Award, ArrowRight, GraduationCap, MapPin } from 'lucide-react'
 
@@ -31,13 +31,13 @@ interface College {
 
 export default function StudyAbroadPage() {
   const [colleges, setColleges] = useState<College[]>([])
+  const [displayedColleges, setDisplayedColleges] = useState<College[]>([])
   const [loading, setLoading] = useState(true)
+  const [isLoadingMore, setIsLoadingMore] = useState(false)
+  const [hasMore, setHasMore] = useState(true)
   const [searchTerm, setSearchTerm] = useState('')
   const [selectedCountry, setSelectedCountry] = useState('all')
-
-  useEffect(() => {
-    fetchStudyAbroadColleges()
-  }, [])
+  const itemsPerPage = 9
 
   const fetchStudyAbroadColleges = async () => {
     try {
@@ -87,7 +87,7 @@ export default function StudyAbroadPage() {
     }
   }
 
-  const filteredColleges = colleges.filter(college => {
+  const filteredColleges = useMemo(() => colleges.filter(college => {
     const matchesSearch = !searchTerm ||
       college.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
       college.overview?.description?.toLowerCase().includes(searchTerm.toLowerCase())
@@ -96,9 +96,37 @@ export default function StudyAbroadPage() {
       college.country_ref?.name === selectedCountry
 
     return matchesSearch && matchesCountry
-  })
+  }), [colleges, searchTerm, selectedCountry])
 
   const countries = [...new Set(colleges.map(college => college.country_ref?.name).filter(Boolean))]
+
+  useEffect(() => {
+    fetchStudyAbroadColleges()
+  }, [])
+
+  // Reset displayed colleges when filters change
+  useEffect(() => {
+    const initialBatch = filteredColleges.slice(0, itemsPerPage)
+    setDisplayedColleges(initialBatch)
+    setHasMore(filteredColleges.length > itemsPerPage)
+  }, [filteredColleges, itemsPerPage])
+
+  // Load more colleges
+  const loadMore = useCallback(() => {
+    if (isLoadingMore || !hasMore) return
+    
+    setIsLoadingMore(true)
+    
+    // Simulate loading delay for better UX
+    setTimeout(() => {
+      const currentLength = displayedColleges.length
+      const nextBatch = filteredColleges.slice(currentLength, currentLength + itemsPerPage)
+      
+      setDisplayedColleges(prev => [...prev, ...nextBatch])
+      setHasMore(currentLength + itemsPerPage < filteredColleges.length)
+      setIsLoadingMore(false)
+    }, 300)
+  }, [displayedColleges.length, filteredColleges, hasMore, isLoadingMore, itemsPerPage])
 
   if (loading) {
     return (
@@ -180,7 +208,7 @@ export default function StudyAbroadPage() {
 
       {/* Colleges Grid */}
       <div className="max-w-6xl mx-auto px-4 py-6">
-        {filteredColleges.length === 0 ? (
+        {displayedColleges.length === 0 ? (
           <div className="text-center py-16">
             <GraduationCap className="w-16 h-16 text-gray-300 mx-auto mb-4" />
             <h3 className="text-lg font-semibold text-gray-900 mb-2">No colleges found</h3>
@@ -188,7 +216,7 @@ export default function StudyAbroadPage() {
           </div>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {filteredColleges.map((college) => (
+            {displayedColleges.map((college) => (
               <div key={college._id} className="bg-white rounded-xl border border-gray-200 shadow-sm hover:shadow-lg transition-shadow flex flex-col h-full">
                 {/* College Image */}
                 <div className="h-48 bg-linear-to-br from-[#EF7D31]/10 to-[#EF7D31]/20 rounded-t-xl overflow-hidden shrink-0">
@@ -264,6 +292,34 @@ export default function StudyAbroadPage() {
             ))}
           </div>
         )}
+        
+        {/* Load More Button */}
+        {hasMore && (
+          <div className="flex justify-center mt-8">
+            <button
+              onClick={loadMore}
+              disabled={isLoadingMore}
+              className="bg-[#EF7D31] hover:bg-[#4A90E2] disabled:bg-gray-300 text-white px-6 py-3 rounded-lg font-medium text-sm transition-colors flex items-center gap-2"
+            >
+              {isLoadingMore ? (
+                <>
+                  <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                  Loading...
+                </>
+              ) : (
+                <>
+                  Load More
+                  <ArrowRight className="w-4 h-4" />
+                </>
+              )}
+            </button>
+          </div>
+        )}
+        
+        {/* Results count */}
+        <div className="text-center mt-4 text-sm text-gray-600">
+          Showing {displayedColleges.length} of {filteredColleges.length} colleges
+        </div>
       </div>
     </div>
   )

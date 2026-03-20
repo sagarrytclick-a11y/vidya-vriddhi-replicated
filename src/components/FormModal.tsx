@@ -161,7 +161,7 @@ export const FormModal: React.FC = () => {
                 <button
                   type="submit"
                   disabled={isSubmitting || submitStatus === 'success'}
-                  className="w-full sm:w-auto px-4 sm:px-6 py-3 sm:py-4 bg-[#EF7D31] text-white font-bold rounded-2xl shadow-lg shadow-[#EF7D31]/20 hover:bg-[#4A90E2] transition-all disabled:opacity-70 disabled:cursor-not-allowed text-sm sm:text-base"
+                  className="w-full sm:w-auto cursor-pointer px-4 sm:px-6 py-3 sm:py-4 bg-[#EF7D31] text-white font-bold rounded-2xl shadow-lg shadow-[#EF7D31]/20 hover:bg-[#EF7D31] transition-all disabled:opacity-70 disabled:cursor-not-allowed text-sm sm:text-base"
                 >
                   <span className={`flex items-center justify-center gap-1.5 sm:gap-2 transition-transform ${isSubmitting ? 'translate-y-10' : 'translate-y-0'}`}>
                     Submit Request <Send className="w-3.5 h-3.5 sm:w-4 sm:h-4" />

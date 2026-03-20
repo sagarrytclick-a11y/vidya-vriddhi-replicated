@@ -83,8 +83,8 @@ const fetchColleges = async (countrySlug?: string): Promise<College[]> => {
               <Building2 size={48} />
             </div>
             <h3 className="text-xl font-bold text-slate-900 mb-2">Error Loading Colleges</h3>
-            <p className="text-slate-500 font-medium">{error?.message}</p>
-            <p className="text-slate-500 mt-2">Please try again later.</p>
+            <p className="text-[#EF7D31] font-medium">{error?.message}</p>
+            <p className="text-[#EF7D31] mt-2">Please try again later.</p>
           </div>
         </div>
       </div>
@@ -97,7 +97,7 @@ const fetchColleges = async (countrySlug?: string): Promise<College[]> => {
         <div className="max-w-7xl mx-auto px-4">
           <div className="text-center mb-12">
             <div className="w-16 h-16 border-4 border-[#EF7D31]/20 border-t-[#EF7D31] rounded-full animate-spin mx-auto mb-4"></div>
-            <p className="text-slate-500 font-bold uppercase tracking-widest text-xs">Loading Colleges...</p>
+            <p className="text-[#EF7D31] font-bold uppercase tracking-widest text-xs">Loading Colleges...</p>
           </div>
         </div>
       </div>
@@ -109,9 +109,9 @@ const fetchColleges = async (countrySlug?: string): Promise<College[]> => {
       <div className="py-16">
         <div className="max-w-7xl mx-auto px-4">
           <div className="text-center mb-12">
-            <Building2 size={48} className="text-slate-300 mx-auto mb-4" />
+            <Building2 size={48} className="text-[#EF7D31]/30 mx-auto mb-4" />
             <h3 className="text-xl font-bold text-slate-900 mb-2">No Colleges Available</h3>
-            <p className="text-slate-500 font-medium">Check back soon for colleges in this destination.</p>
+            <p className="text-[#EF7D31] font-medium">Check back soon for colleges in this destination.</p>
           </div>
         </div>
       </div>
@@ -121,14 +121,14 @@ const fetchColleges = async (countrySlug?: string): Promise<College[]> => {
   const visibleColleges = colleges.slice(currentIndex * 3, (currentIndex + 1) * 3)
 
   return (
-    <div className="py-16 bg-gradient-to-b from-white to-slate-50">
+    <div className="py-16 bg-gradient-to-b from-white to-[#EF7D31]/5">
       <div className="max-w-7xl mx-auto px-4">
         {/* Header */}
         <div className="text-center mb-12">
           <h2 className="text-4xl font-black text-slate-900 mb-4">
             Top Colleges in {countryName || 'This Country'}
           </h2>
-          <p className="text-xl text-slate-600 max-w-3xl mx-auto font-medium">
+          <p className="text-xl max-w-3xl mx-auto font-medium">
             Explore prestigious universities and colleges offering world-class education
           </p>
         </div>
@@ -140,17 +140,17 @@ const fetchColleges = async (countrySlug?: string): Promise<College[]> => {
             <>
               <button
                 onClick={prevSlide}
-                className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 z-10 bg-white rounded-full p-3 shadow-lg border border-slate-200 hover:bg-slate-50 transition-all duration-200 group"
+                className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 z-10 bg-white rounded-full p-3 shadow-lg border border-[#EF7D31]/20 hover:bg-[#EF7D31]/10 transition-all duration-200 group"
                 aria-label="Previous colleges"
               >
-                <ChevronLeft size={20} className="text-slate-600 group-hover:text-[#EF7D31] transition-colors" />
+                <ChevronLeft size={20} className="text-[#EF7D31] group-hover:text-[#EF7D31]/80 transition-colors" />
               </button>
               <button
                 onClick={nextSlide}
-                className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 z-10 bg-white rounded-full p-3 shadow-lg border border-slate-200 hover:bg-slate-50 transition-all duration-200 group"
+                className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 z-10 bg-white rounded-full p-3 shadow-lg border border-[#EF7D31]/20 hover:bg-[#EF7D31]/10 transition-all duration-200 group"
                 aria-label="Next colleges"
               >
-                <ChevronRight size={20} className="text-slate-600 group-hover:text-[#EF7D31] transition-colors" />
+                <ChevronRight size={20} className="text-[#EF7D31] group-hover:text-[#EF7D31]/80 transition-colors" />
               </button>
             </>
           )}
@@ -210,7 +210,7 @@ const fetchColleges = async (countrySlug?: string): Promise<College[]> => {
                 className={`w-2 h-2 rounded-full transition-all duration-300 ${
                   index === currentIndex 
                     ? 'bg-[#EF7D31] w-8' 
-                    : 'bg-slate-300 hover:bg-slate-400'
+                    : 'bg-[#EF7D31]/30 hover:bg-[#EF7D31]/50'
                 }`}
                 aria-label={`Go to slide ${index + 1}`}
               />
@@ -220,7 +220,7 @@ const fetchColleges = async (countrySlug?: string): Promise<College[]> => {
 
         {/* View All Button */}
         <div className="text-center mt-12">
-          <button className="inline-flex items-center gap-2 bg-[#EF7D31] hover:bg-[#4A90E2] text-white font-black rounded-2xl transition-all duration-300 px-8 py-4 text-lg group shadow-lg shadow-[#EF7D31]/20">
+          <button className="inline-flex items-center gap-2 bg-[#EF7D31] hover:bg-[#EF7D31]/90 text-white font-black rounded-2xl transition-all duration-300 px-8 py-4 text-lg group shadow-lg shadow-[#EF7D31]/20">
             View All Colleges
             <ChevronRight size={20} className="group-hover:translate-x-1 transition-transform" />
           </button>

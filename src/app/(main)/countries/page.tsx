@@ -1,21 +1,25 @@
 'use client'
 
-import React, { useState, useMemo } from 'react'
+import React, { useState, useMemo, useEffect, useCallback } from 'react'
 import Link from 'next/link'
-import { Search, Globe, MapPin, GraduationCap, ArrowRight, X, AlertCircle, RefreshCw } from 'lucide-react'
+import { Search, Globe, MapPin, GraduationCap, ArrowRight, X, AlertCircle, RefreshCw, ChevronLeft, ChevronRight } from 'lucide-react'
 import { useCountries } from '@/hooks/useCountries'
 import { Country } from '@/lib/types'
+import { Button } from '@/components/ui/button'
 
 export default function CountriesPage() {
   const [searchTerm, setSearchTerm] = useState('')
+  const [displayedCountries, setDisplayedCountries] = useState<Country[]>([])
+  const [isLoadingMore, setIsLoadingMore] = useState(false)
+  const [hasMore, setHasMore] = useState(true)
+  const itemsPerPage = 12
 
-  // Use TanStack Query for countries data
   const { 
     data: countries = [], 
     isLoading, 
     error, 
     refetch 
-  } = useCountries()
+  } = useCountries();
 
   // Filter countries based on search
   const filteredCountries = useMemo(() => {
@@ -27,6 +31,30 @@ export default function CountriesPage() {
       (country.description && country.description.toLowerCase().includes(searchLower))
     )
   }, [countries, searchTerm])
+
+  // Reset displayed countries when search changes
+  useEffect(() => {
+    const initialBatch = filteredCountries.slice(0, itemsPerPage)
+    setDisplayedCountries(initialBatch)
+    setHasMore(filteredCountries.length > itemsPerPage)
+  }, [filteredCountries, itemsPerPage])
+
+  // Load more countries
+  const loadMore = useCallback(() => {
+    if (isLoadingMore || !hasMore) return
+    
+    setIsLoadingMore(true)
+    
+    // Simulate loading delay for better UX
+    setTimeout(() => {
+      const currentLength = displayedCountries.length
+      const nextBatch = filteredCountries.slice(currentLength, currentLength + itemsPerPage)
+      
+      setDisplayedCountries(prev => [...prev, ...nextBatch])
+      setHasMore(currentLength + itemsPerPage < filteredCountries.length)
+      setIsLoadingMore(false)
+    }, 300)
+  }, [displayedCountries.length, filteredCountries, hasMore, isLoadingMore, itemsPerPage])
 
   if (isLoading) {
     return (
@@ -114,7 +142,7 @@ export default function CountriesPage() {
 
       {/* Countries List */}
       <div className="max-w-6xl mx-auto px-4 py-6">
-        {filteredCountries.length === 0 ? (
+        {displayedCountries.length === 0 ? (
           <div className="text-center py-16">
             <div className="w-16 h-16 bg-linear-to-br from-[#EF7D31]/10 to-[#EF7D31]/20 rounded-full flex items-center justify-center mx-auto mb-4">
               <Globe size={24} className="text-[#EF7D31]" />
@@ -124,7 +152,7 @@ export default function CountriesPage() {
           </div>
         ) : (
           <div className="space-y-4">
-            {filteredCountries.map((country) => (
+            {displayedCountries.map((country) => (
               <div
                 key={country._id}
                 className="bg-white border border-[#E2E8F0] rounded-xl p-6 hover:shadow-md hover:border-[#EF7D31] transition-all duration-300"
@@ -186,14 +214,33 @@ export default function CountriesPage() {
           </div>
         )}
 
-        {/* End of results */}
-        {filteredCountries.length > 0 && (
-          <div className="text-center py-8 border-t border-[#E2E8F0] mt-8">
-            <p className="text-gray-700 text-sm font-medium">
-              Showing all {filteredCountries.length} countries
-            </p>
+        {/* Load More Button */}
+        {hasMore && (
+          <div className="flex justify-center mt-8">
+            <button
+              onClick={loadMore}
+              disabled={isLoadingMore}
+              className="bg-[#EF7D31] hover:bg-[#4A90E2] disabled:bg-gray-300 text-white px-6 py-3 rounded-lg font-medium text-sm transition-colors flex items-center gap-2"
+            >
+              {isLoadingMore ? (
+                <>
+                  <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                  Loading...
+                </>
+              ) : (
+                <>
+                  Load More
+                  <ArrowRight className="w-4 h-4" />
+                </>
+              )}
+            </button>
           </div>
         )}
+        
+        {/* Results count */}
+        <div className="text-center mt-4 text-sm text-gray-600">
+          Showing {displayedCountries.length} of {filteredCountries.length} countries
+        </div>
       </div>
     </div>
   )
