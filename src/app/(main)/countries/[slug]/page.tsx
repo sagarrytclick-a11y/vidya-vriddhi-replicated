@@ -219,11 +219,11 @@ const CountryPage = () => {
                   </p>
                   
                   <div className="space-y-4">
-                    <Button onClick={openModal} variant="outline" className="w-full h-16 rounded-2xl border-white/20 bg-white/5 hover:bg-white/10 text-white font-bold cursor-pointer">
+                    <Button onClick={openModal} variant="outline" className="w-full h-16 text-md rounded-2xl border-white/20 bg-white/5 hover:bg-white/10 text-white font-bold cursor-pointer">
                       Book Free Slot
                       <ArrowRight className="ml-2 w-5 h-5" />
                     </Button>
-                    <Button onClick={openModal} variant="outline" className="w-full h-16 rounded-2xl border-white/20 bg-white/5 hover:bg-white/10 text-white font-bold cursor-pointer">
+                    <Button onClick={openModal} variant="outline" className="w-full h-16 text-md rounded-2xl border-white/20 bg-white/5 hover:bg-white/10 text-white font-bold cursor-pointer">
                       <FileText className="mr-2 w-5 h-5" />
                       Download Brochure
                     </Button>
