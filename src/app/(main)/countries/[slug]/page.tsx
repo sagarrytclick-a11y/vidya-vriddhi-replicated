@@ -2,8 +2,6 @@
 
 import React, { useState, useEffect } from 'react'
 import { useParams } from 'next/navigation'
-import Link from 'next/link'
-import { Badge } from '@/components/ui/badge'
 import { Card, CardContent } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import CollegeSlider from '@/components/CollegeSlider'
@@ -212,7 +210,7 @@ const CountryPage = () => {
           {/* SIDEBAR CTA */}
           <div className="lg:col-span-4">
             <div className="sticky top-24 space-y-6">
-              <Card className="border-none bg-gradient-to-br from-[#EF7D31] to-[#4A90E2] rounded-[3rem] overflow-hidden text-white shadow-2xl shadow-[#EF7D31]/20">
+              <Card className="border-none bg-[#EF7D31] rounded-[3rem] overflow-hidden text-white shadow-2xl shadow-[#EF7D31]/20">
                 <CardContent className="p-10 relative">
                   <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 blur-3xl rounded-full" />
                   <h3 className="text-3xl font-black mb-4 leading-tight">Start Your Journey Today</h3>
@@ -221,14 +219,11 @@ const CountryPage = () => {
                   </p>
                   
                   <div className="space-y-4">
-                    <Button 
-                      onClick={openModal}
-                      className="w-full h-16 rounded-2xl bg-white text-[#EF7D31] font-black text-lg shadow-xl  group"
-                    >
+                    <Button onClick={openModal} variant="outline" className="w-full h-16 text-md rounded-2xl border-white/20 bg-white/5 hover:bg-white/10 text-white font-bold cursor-pointer">
                       Book Free Slot
-                      <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                      <ArrowRight className="ml-2 w-5 h-5" />
                     </Button>
-                    <Button onClick={openModal} variant="outline" className="w-full h-16 rounded-2xl border-white/20 bg-white/5 hover:bg-white/10 text-white font-bold">
+                    <Button onClick={openModal} variant="outline" className="w-full h-16 text-md rounded-2xl border-white/20 bg-white/5 hover:bg-white/10 text-white font-bold cursor-pointer">
                       <FileText className="mr-2 w-5 h-5" />
                       Download Brochure
                     </Button>
