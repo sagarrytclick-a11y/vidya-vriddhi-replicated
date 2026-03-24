@@ -1,145 +1,201 @@
-"use client";
+'use client'
 
-import React from 'react';
-import { ArrowRight, GraduationCap, Globe, ShieldCheck, CheckCircle2, MapPin } from 'lucide-react';
-import Link from 'next/link';
+import React, { useState, useEffect, useRef } from 'react'
+import { Search, GraduationCap, FileText, MonitorPlay, BookOpen, ChevronLeft, ChevronRight } from 'lucide-react'
+import SearchOverlay from './SearchOverlay'
 
-const Hero: React.FC = () => {
-  return (
-    <section id="home" className="relative min-h-screen flex items-center bg-[#F8FAFC] pt-20 pb-16 overflow-hidden">
+const Hero = () => {
+    const [isSearchOpen, setIsSearchOpen] = useState(false)
+    const [currentSlide, setCurrentSlide] = useState(0)
+    const intervalRef = useRef<NodeJS.Timeout | null>(null)
+    
+    // Lightweight slide data - minimal objects
+    const slides = [
+        {
+            image: "https://i.pinimg.com/1200x/87/0a/9f/870a9fd2c38d42373301bd563c4c055b.jpg",
+            title: "Explore Top Colleges, Exams, Results & More",
+            subtitle: "Search from 1000+ colleges worldwide",
+            collegeName: "Technical University of Munich"
+        },
+        {
+            image: "https://i.pinimg.com/1200x/93/72/da/9372da992291ceb01345624c9efed85b.jpg",
+            title: "Explore Top Colleges, Exams, Results & More",
+            subtitle: "Explore opportunities in top countries",
+            collegeName: "University of Toronto"
+        },
+        {
+            image: "https://i.pinimg.com/1200x/2d/08/8c/2d088c85755726cb50647c7c5eb3c0f9.jpg",
+            title: "Explore Top Colleges, Exams, Results & More",
+            subtitle: "Pursue medical education globally",
+            collegeName: "National University of Singapore"
+        }
+    ]
+    
+    const stats = [
+        { icon: <GraduationCap size={20} />, label: "6000+ Institutions" },
+        { icon: <FileText size={20} />, label: "200+ Exams" },
+        { icon: <MonitorPlay size={20} />, label: "200+ Online Courses" },
+        { icon: <BookOpen size={20} />, label: "200+ Courses" },
+    ]
 
-      {/* Dynamic Background Elements */}
-      <div className="absolute top-0 right-0 w-1/2 h-full bg-[#EF7D31]/5 -skew-x-12 transform origin-top" />
-      <div className="absolute top-40 -left-20 w-80 h-80 bg-[#EF7D31] rounded-full blur-[100px] opacity-10 animate-pulse" />
+    // Optimized auto-rotate with cleanup
+    useEffect(() => {
+        const startRotation = () => {
+            intervalRef.current = setInterval(() => {
+                setCurrentSlide((prev) => (prev + 1) % slides.length)
+            }, 5000)
+        }
+        
+        startRotation()
+        
+        return () => {
+            if (intervalRef.current) {
+                clearInterval(intervalRef.current)
+            }
+        }
+    }, [slides.length])
 
-      <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+    // Simple navigation functions
+    const nextSlide = () => {
+        if (intervalRef.current) clearInterval(intervalRef.current)
+        setCurrentSlide((prev) => (prev + 1) % slides.length)
+        // Restart auto-rotation
+        intervalRef.current = setInterval(() => {
+            setCurrentSlide((prev) => (prev + 1) % slides.length)
+        }, 5000)
+    }
 
-          {/* LEFT COLUMN - Messaging */}
-          <div className="flex flex-col items-start text-left">
+    const prevSlide = () => {
+        if (intervalRef.current) clearInterval(intervalRef.current)
+        setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length)
+        // Restart auto-rotation
+        intervalRef.current = setInterval(() => {
+            setCurrentSlide((prev) => (prev + 1) % slides.length)
+        }, 5000)
+    }
 
-            {/* Trust Badge */}
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white border border-[#E2E8F0] shadow-sm mb-6">
-              <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#EF7D31] opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-[#EF7D31]"></span>
-              </span>
-              <span className="text-[11px] font-bold text-[#64748B] uppercase tracking-widest">Globally Recognized Medical Schools</span>
-            </div>
-
-            {/* Main Heading */}
-            <h1 className="text-5xl md:text-6xl xl:text-[75px] font-black text-[#1E212B] leading-[1.05] tracking-tight mb-8">
-              Pursue Medical Education <br />
-              <span className="relative inline-block">
-                <span className="relative z-10 text-[#EF7D31]">Beyond Borders</span>
-                {/* Abstract underline effect */}
-                <span className="absolute bottom-2 left-0 w-full h-4 bg-[#EF7D31]/10 -z-10 rounded-full opacity-60"></span>
-              </span>
-              <br />
-              <span className="relative inline-flex flex-wrap items-center gap-3">
-                {/* Universal Highlight */}
-                <span className="relative z-10 px-5 py-1.5 text-white bg-[#EF7D31] rounded-2xl shadow-xl shadow-[#EF7D31]/20">
-                  No Fees
-                </span>
-                {/* Sub-text inside heading for clarity */}
-                <span className="text-2xl md:text-3xl font-bold text-[#64748B]">
-                  Medicine • Technical • Management
-                </span>
-              </span>
-            </h1>
-
-            <p className="text-lg md:text-xl text-[#64748B] max-w-xl leading-relaxed mb-10">
-              Affordable medical education abroad with premier clinical training. Connect with top universities in <span className="text-[#1E212B] font-semibold underline decoration-[#EF7D31]">Kyrgyzstan, Tajikistan, Nepal</span> & other destinations.
-            </p>
-
-            {/* Feature Checkmarks (Quick Connectivity for Parents) */}
-            <div className="grid grid-cols-2 gap-y-3 gap-x-6 mb-10">
-              {['Assured Admission', 'Best Fee Structure', 'Secure Housing', 'Indian Cuisine Available'].map((text) => (
-                <div key={text} className="flex items-center gap-2">
-                  <CheckCircle2 size={18} className="text-[#EF7D31] shrink-0" />
-                  <span className="text-sm font-medium text-[#1E212B]">{text}</span>
+    return (
+        <section className="relative h-150 w-full flex items-center justify-center overflow-hidden">
+            {/* Simple Slider Container - No heavy animations */}
+            <div className="absolute inset-0 z-0">
+                <div
+                    className="absolute inset-0 bg-cover bg-center transition-opacity duration-500"
+                    style={{
+                        backgroundImage: `url('${slides[currentSlide].image}')`,
+                    }}
+                >
+                    {/* College Name - Bottom Left */}
+                    <div className="absolute bottom-4 left-4 text-white">
+                        <div className="bg-white/80 backdrop-blur-sm rounded-lg px-3 py-2">
+                            <p className="text-sm font-semibold text-gray-900">{slides[currentSlide].collegeName}</p>
+                        </div>
+                    </div>
+                    <div className="absolute inset-0 bg-black/40"></div>
                 </div>
-              ))}
             </div>
 
-            {/* Action Buttons */}
-            <div className="flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto">
-              <Link
-                href="/colleges"
-                className="group w-full sm:w-auto px-10 py-5 bg-[#EF7D31] text-white font-bold rounded-2xl hover:bg-[#EF7D31]/90 transition-all shadow-xl shadow-[#EF7D31]/20 flex items-center justify-center gap-3 text-lg hover:-translate-y-1"
-              >
-                Search Colleges
-                <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
-              </Link>
+            {/* Simple Navigation Buttons */}
+            <button
+                onClick={prevSlide}
+                className="absolute left-4 z-20 bg-black/30 text-white p-2 rounded-full hover:bg-black/50 transition-colors"
+                aria-label="Previous slide"
+            >
+                <ChevronLeft size={20} />
+            </button>
+            
+            <button
+                onClick={nextSlide}
+                className="absolute right-4 z-20 bg-black/30 text-white p-2 rounded-full hover:bg-black/50 transition-colors"
+                aria-label="Next slide"
+            >
+                <ChevronRight size={20} />
+            </button>
 
-              <Link
-                href="/countries"
-                className="group w-full sm:w-auto px-8 py-5 rounded-2xl border-2 border-[#E2E8F0] bg-white hover:border-[#EF7D31] transition-all flex items-center justify-center gap-3"
-              >
-                <Globe size={20} className="text-[#EF7D31]" />
-                <span className="text-base font-bold text-[#1E212B]">View Destinations</span>
-              </Link>
+            {/* Simple Slide Indicators */}
+            <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2 z-20 flex space-x-1">
+                {slides.map((_, index) => (
+                    <button
+                        key={index}
+                        onClick={() => {
+                            if (intervalRef.current) clearInterval(intervalRef.current)
+                            setCurrentSlide(index)
+                            intervalRef.current = setInterval(() => {
+                                setCurrentSlide((prev) => (prev + 1) % slides.length)
+                            }, 5000)
+                        }}
+                        className={`transition-colors ${
+                            index === currentSlide
+                                ? 'w-6 h-1.5 bg-white'
+                                : 'w-1.5 h-1.5 bg-white/50 hover:bg-white/70'
+                        } rounded-full`}
+                        aria-label={`Go to slide ${index + 1}`}
+                    />
+                ))}
             </div>
-          </div>
 
-          {/* RIGHT COLUMN - Visuals */}
-          <div className="relative pt-10 lg:pt-0">
-            {/* Experience Card (Floating) */}
-            <div className="absolute -top-4 -right-4 md:right-0 z-20 bg-white p-4 rounded-2xl shadow-2xl border border-[#E2E8F0] flex items-center gap-4 animate-float">
-              <div className="w-12 h-12 bg-[#EF7D31]/10 rounded-full flex items-center justify-center text-[#EF7D31]">
-                <ShieldCheck size={28} />
-              </div>
-              <div>
-                <p className="text-xs text-[#64748B] font-bold uppercase tracking-tighter">Established</p>
-                <p className="text-sm font-black text-[#1E212B]">15+ Years Trust</p>
-              </div>
-            </div>
+            {/* Content Container - Simplified */}
+            <div className="relative z-10 w-full max-w-5xl px-6 text-center text-white">
 
-            <div className="grid grid-cols-12 gap-4 h-[450px] md:h-[550px]">
-              {/* Main Image - Medical Students */}
-              <div className="col-span-8 h-full relative group">
-                <div className="absolute inset-0 bg-[#EF7D31] rounded-[2rem] rotate-3 transition-transform group-hover:rotate-1" />
-                <div className="relative h-full rounded-[2rem] overflow-hidden border-4 border-white shadow-xl">
-                  <img
-                    src="https://i.pinimg.com/1200x/0a/c0/63/0ac063f9121d4de75e83edf5f7aed6ac.jpg"
-                    alt="International Medical Students"
-                    className="w-full h-full object-cover"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent flex items-end p-8">
-                    <p className="text-white font-medium italic text-sm">"Quality medical education with international standards"</p>
-                  </div>
+                {/* Dynamic Main Heading */}
+                <h1 className="text-4xl md:text-5xl font-bold mb-3 drop-shadow-lg">
+                    {slides[currentSlide].title}
+                </h1>
+
+                <p className="text-lg md:text-xl mb-8 text-gray-100">
+                    {slides[currentSlide].subtitle}
+                </p>
+
+                {/* Stats - Simplified */}
+                <div className="flex flex-wrap justify-center gap-3 md:gap-4 mb-8">
+                    {stats.map((item, index) => (
+                        <div
+                            key={index}
+                            className="flex items-center space-x-2 bg-white/10 backdrop-blur-sm px-4 py-2 rounded-lg border border-white/20"
+                        >
+                            <span className="text-[#F27121] bg-white p-1 rounded-full flex items-center justify-center">
+                                {item.icon}
+                            </span>
+                            <span className="text-sm font-medium">
+                                {item.label}
+                            </span>
+                        </div>
+                    ))}
                 </div>
-              </div>
 
-              {/* Side Images */}
-              <div className="col-span-4 flex flex-col gap-4 h-full">
-                <div className="h-1/2 rounded-[2rem] overflow-hidden border-4 border-white shadow-lg">
-                  <img src="https://images.unsplash.com/photo-1527613426441-4da17471b66d?w=400&q=80" className="w-full h-full object-cover" alt="Hospital" />
+                {/* Search Bar - Simplified */}
+                <div 
+                    className="max-w-3xl mx-auto bg-white rounded-lg p-1.5 flex items-center shadow-lg cursor-pointer"
+                    onClick={() => setIsSearchOpen(true)}
+                >
+                    <div className="flex-1 flex items-center px-4">
+                        <input
+                            type="text"
+                            placeholder="Search Colleges, Courses, Exams..."
+                            className="w-full py-2 bg-transparent border-none focus:ring-0 text-gray-800 placeholder:text-gray-500 outline-none cursor-pointer"
+                            readOnly
+                        />
+                    </div>
+
+                    <button 
+                        className="bg-[#F27121] text-white px-6 py-2 rounded-md font-medium hover:bg-[#E05A1B] transition-colors"
+                        onClick={(e) => {
+                            e.stopPropagation()
+                            setIsSearchOpen(true)
+                        }}
+                    >
+                        Search
+                    </button>
                 </div>
-                <div className="h-1/2 rounded-[2rem] overflow-hidden border-4 border-white shadow-lg bg-[#EF7D31] flex items-center justify-center text-center p-4">
-                  <div>
-                    <p className="text-white font-black text-2xl">5000+</p>
-                    <p className="text-white/80 text-[10px] font-bold uppercase">Successful Students</p>
-                  </div>
-                </div>
-              </div>
+
             </div>
+            
+            {/* Search Overlay */}
+            <SearchOverlay 
+                isOpen={isSearchOpen} 
+                onClose={() => setIsSearchOpen(false)} 
+            />
+        </section>
+    )
+}
 
-            {/* Country Tags Overlay */}
-            <div className="mt-8 flex flex-wrap gap-3 justify-center lg:justify-start">
-              {['Kyrgyzstan', 'Tajikistan', 'Nepal', 'Bangladesh', 'Georgia', 'Armenia'].map((country) => (
-                <span key={country} className="px-4 py-2 bg-white rounded-xl text-sm font-bold text-[#1E212B] shadow-sm border border-[#E2E8F0] flex items-center gap-2">
-                  <div className="w-1.5 h-1.5 rounded-full bg-[#EF7D31]" />
-                  {country}
-                </span>
-              ))}
-            </div>
-          </div>
-
-        </div>
-      </div>
-    </section>
-  );
-};
-
-export default Hero;
+export default Hero
