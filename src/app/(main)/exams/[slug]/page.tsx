@@ -137,8 +137,8 @@ const ExamPage = () => {
   if (loading) return (
     <div className="min-h-screen bg-slate-50 flex items-center justify-center">
       <div className="flex flex-col items-center gap-4">
-        <div className="w-12 h-12 border-4 border-blue-600/20 border-t-blue-600 rounded-full animate-spin" />
-        <p className="text-slate-400 font-bold text-xs uppercase tracking-widest animate-pulse">Fetching Data...</p>
+        <div className="w-12 h-12 border-4 border-slate-200 border-t-orange-400 rounded-full animate-spin" />
+        <p className="text-slate-400 font-bold text-xs uppercase tracking-widest animate-pulse">Loading Exam...</p>
       </div>
     </div>
   )
