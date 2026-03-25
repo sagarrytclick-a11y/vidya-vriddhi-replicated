@@ -26,8 +26,8 @@ export const metadata: Metadata = {
     images: [SITE_IDENTITY.meta.ogImage || SITE_IDENTITY.assets.logo.main],
   },
   icons: {
-    icon: '/favicon.png',
-    apple: '/apple-touch-icon.png',
+    icon: '/favicon.ico',
+    apple: '/favicon.ico',
   },
   manifest: "/manifest.json",
 };
