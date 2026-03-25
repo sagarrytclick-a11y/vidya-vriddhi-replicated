@@ -131,17 +131,21 @@ export default function Navbar() {
 
   const navItems = [
     { name: "Scopes & Avenues", href: "/", hasDropdown: true },
+    { name: "MBA", href: "/online-mba", hasDropdown: true },
     { name: "Colleges", href: "/colleges", hasDropdown: true },
     { name: "Exams", href: "/exams", hasDropdown: true },
     { name: "Countries", href: "/countries", hasDropdown: true },
-    { name: "Blog", href: "/blogs" },
     { name: "About", href: "/about" },
   ];
 
   const dropdownContent = {
+    MBA: [
+      { title: "Online MBA", href: "/online-mba" },
+      { title: "PGDM MBA", href: "/pgdm-mba" }
+    ],
     "Scopes & Avenues": [
       { title: "Study Abroad", href: "/study-abroad" },
-      { title: "MBBS Abroad", href: "/mbbs-abroad" }
+      { title: "MBBS Abroad", href: "/mbbs-abroad" },
     ],
     Colleges: [
       { title: "Study Abroad", slug: "study-abroad", icon: <GraduationCap size={18} /> },
@@ -350,8 +354,8 @@ export default function Navbar() {
                         <button
                           onClick={() => setSelectedCollegeType("study-abroad")}
                           className={`flex-1 py-2 rounded-lg text-sm font-bold ${selectedCollegeType === "study-abroad"
-                              ? "bg-[#4A90E2] text-white"
-                              : "bg-[#FFFFFF] text-[#1E212B]"
+                            ? "bg-[#4A90E2] text-white"
+                            : "bg-[#FFFFFF] text-[#1E212B]"
                             }`}
                         >
                           Study Abroad
@@ -360,8 +364,8 @@ export default function Navbar() {
                         <button
                           onClick={() => setSelectedCollegeType("mbbs-abroad")}
                           className={`flex-1 py-2 rounded-lg text-sm font-bold ${selectedCollegeType === "mbbs-abroad"
-                              ? "bg-[#4A90E2] text-white"
-                              : "bg-[#FFFFFF] text-[#1E212B]"
+                            ? "bg-[#4A90E2] text-white"
+                            : "bg-[#FFFFFF] text-[#1E212B]"
                             }`}
                         >
                           MBBS Abroad
