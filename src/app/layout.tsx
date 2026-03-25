@@ -8,7 +8,7 @@ import { QueryProvider } from "@/providers/QueryProvider";
 export const metadata: Metadata = {
   title: SITE_IDENTITY.meta.title,
   description: SITE_IDENTITY.meta.description,
-   keywords: SITE_IDENTITY.meta.keywords,
+  keywords: SITE_IDENTITY.meta.keywords,
   authors: [{ name: SITE_IDENTITY.meta.author }],
   creator: SITE_IDENTITY.meta.author,
   publisher: SITE_IDENTITY.meta.author,
@@ -26,8 +26,11 @@ export const metadata: Metadata = {
     images: [SITE_IDENTITY.meta.ogImage || SITE_IDENTITY.assets.logo.main],
   },
   icons: {
-    icon: '/favicon.ico',
-    apple: '/favicon.ico',
+    icon: [
+      { url: '/favicon.png', type: 'image/png' },
+      { url: '/favicon.ico', type: 'image/x-icon' },
+    ],
+    apple: '/apple-touch-icon.png',
   },
   manifest: "/manifest.json",
 };
