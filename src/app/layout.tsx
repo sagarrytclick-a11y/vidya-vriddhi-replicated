@@ -8,6 +8,9 @@ import { QueryProvider } from "@/providers/QueryProvider";
 export const metadata: Metadata = {
   title: SITE_IDENTITY.meta.title,
   description: SITE_IDENTITY.meta.description,
+  verification: {
+    google: 'VJyCFyrB8G15aFSZqzQ3574_0H7asXTP7uB2k9BiZv8',
+  },
   keywords: SITE_IDENTITY.meta.keywords,
   authors: [{ name: SITE_IDENTITY.meta.author }],
   creator: SITE_IDENTITY.meta.author,
