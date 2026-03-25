@@ -25,12 +25,14 @@ export const metadata: Metadata = {
     description: SITE_IDENTITY.meta.description,
     images: [SITE_IDENTITY.meta.ogImage || SITE_IDENTITY.assets.logo.main],
   },
-  icons: {
+ icons: {
     icon: [
-      { url: '/favicon.png', type: 'image/png' },
-      { url: '/favicon.ico', type: 'image/x-icon' },
+      { url: '/favicon.png?v=2', type: 'image/png' },
+      { url: '/favicon.ico?v=2', type: 'image/x-icon' },
     ],
-    apple: '/apple-touch-icon.png',
+    apple: [
+      { url: '/apple-touch-icon.png?v=2' },
+    ],
   },
   manifest: "/manifest.json",
 };
