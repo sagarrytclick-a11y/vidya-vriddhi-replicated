@@ -188,6 +188,9 @@ export default function EnquiriesPage() {
     switch (interest) {
       case 'study-abroad': return 'bg-blue-600 text-white'
       case 'mbbs-abroad': return 'bg-purple-600 text-white'
+      case 'online-mba': return 'bg-orange-600 text-white'
+      case 'regular-mba': return 'bg-green-600 text-white'
+      case 'mbbs': return 'bg-red-600 text-white'
       default: return 'bg-gray-600 text-white'
     }
   }
@@ -227,11 +230,23 @@ export default function EnquiriesPage() {
     {
       key: 'interest' as keyof Enquiry,
       title: 'Interest',
-      render: (value: string) => (
-        <div className={`flex px-2 py-1 rounded-lg text-xs font-medium ${getInterestColor(value)}`}>
-          {value === 'study-abroad' ? 'Study Abroad' : 'MBBS Abroad'}
-        </div>
-      )
+      render: (value: string) => {
+        const getInterestLabel = (interest: string) => {
+          switch (interest) {
+            case 'study-abroad': return 'Study Abroad'
+            case 'mbbs-abroad': return 'MBBS Abroad'
+            case 'online-mba': return 'Online MBA'
+            case 'regular-mba': return 'Regular MBA'
+            case 'mbbs': return 'MBBS'
+            default: return interest
+          }
+        }
+        return (
+          <div className={`flex px-2 py-1 rounded-lg text-xs font-medium ${getInterestColor(value)}`}>
+            {getInterestLabel(value)}
+          </div>
+        )
+      }
     },
     {
       key: 'status' as keyof Enquiry,
@@ -355,6 +370,9 @@ export default function EnquiriesPage() {
             <SelectItem value="all">All Interests</SelectItem>
             <SelectItem value="study-abroad">Study Abroad</SelectItem>
             <SelectItem value="mbbs-abroad">MBBS Abroad</SelectItem>
+            <SelectItem value="online-mba">Online MBA</SelectItem>
+            <SelectItem value="regular-mba">Regular MBA</SelectItem>
+            <SelectItem value="mbbs">MBBS</SelectItem>
           </SelectContent>
         </Select>
       </div>
@@ -510,7 +528,16 @@ export default function EnquiriesPage() {
                 <label className="text-sm font-medium text-gray-700">Interest</label>
                 <div className="mt-1">
                   <div className={`inline-flex px-2 py-1 rounded-lg text-xs font-medium ${getInterestColor(selectedEnquiry.interest)}`}>
-                    {selectedEnquiry.interest === 'study-abroad' ? 'Study Abroad' : 'MBBS Abroad'}
+                    {(() => {
+                      switch (selectedEnquiry.interest) {
+                        case 'study-abroad': return 'Study Abroad'
+                        case 'mbbs-abroad': return 'MBBS Abroad'
+                        case 'online-mba': return 'Online MBA'
+                        case 'regular-mba': return 'Regular MBA'
+                        case 'mbbs': return 'MBBS'
+                        default: return selectedEnquiry.interest
+                      }
+                    })()}
                   </div>
                 </div>
               </div>

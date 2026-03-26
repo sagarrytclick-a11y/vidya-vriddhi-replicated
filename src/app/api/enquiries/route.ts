@@ -173,7 +173,7 @@ export async function GET(request: NextRequest) {
       ...enquiry,
       createdAt: enquiry.created_at,
       updatedAt: enquiry.updated_at,
-      _id: enquiry._id?.toString() || enquiry.id?.toString()
+      _id: enquiry._id.toString()
     }))
 
     return NextResponse.json({

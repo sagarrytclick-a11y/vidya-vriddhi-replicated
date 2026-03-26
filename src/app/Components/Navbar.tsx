@@ -141,7 +141,7 @@ export default function Navbar() {
   const dropdownContent = {
     MBA: [
       { title: "Online MBA", href: "/online-mba" },
-      { title: "PGDM MBA", href: "/pgdm-mba" }
+      { title: "MBA PGDM", href: "/pgdm-mba" }
     ],
     "Scopes & Avenues": [
       { title: "Study Abroad", href: "/study-abroad" },
@@ -164,17 +164,6 @@ export default function Navbar() {
 
   return (
     <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? "bg-[#F8FAFC]/98 backdrop-blur-lg shadow-xl" : "bg-[#F8FAFC]/90 backdrop-blur-sm shadow-sm"}`}>
-
-      {/* TOP CONTACT BAR */}
-      <div className="hidden bg-[#4A90E2] text-white lg:block">
-        <div className="mx-auto flex max-w-7xl items-center justify-between px-8 py-2.5 text-[13px] font-semibold">
-          <div className="flex items-center gap-8">
-            <a href={`tel:${phones.primaryRaw}`} className="flex items-center gap-2 hover:text-[#F8FAFC] transition-colors font-medium"><Phone size={14} /><span className="font-semibold">{phones.primary}</span></a>
-            <a href={`mailto:${emails.info}`} className="flex items-center gap-2 hover:text-[#F8FAFC] transition-colors font-medium"><Mail size={14} /><span className="font-semibold">{emails.info}</span></a>
-          </div>
-          <div className="flex items-center gap-2 text-[#F8FAFC] font-medium"><MapPin size={14} /><span className="font-semibold">{address.office}</span></div>
-        </div>
-      </div>
 
       {/* MAIN NAVIGATION */}
       <div className="border-b border-[#E2E8F0]">
@@ -309,7 +298,7 @@ export default function Navbar() {
 
             <div className="flex items-center gap-4">
               <button onClick={openModal} className="hidden lg:block px-7 py-3 text-[13px] font-black text-white bg-[#EF7D31] rounded-full hover:bg-[#f66505] transition-all shadow-lg shadow-[#EF7D31]/20 uppercase tracking-wider">
-                Get Consultation
+                Book Your Session
               </button>
               <button onClick={() => setIsOpen(!isOpen)} className="lg:hidden p-2 text-[#1E212B]">
                 {isOpen ? <X size={28} /> : <Menu size={28} />}
@@ -498,7 +487,7 @@ export default function Navbar() {
             </div>
           ))}
           <button onClick={() => { openModal(); setIsOpen(false); }} className="w-full py-4 bg-[#EF7D31] text-white font-black rounded-xl shadow-lg mt-6 uppercase tracking-widest">
-            Book Consultation
+           Free Session
           </button>
         </div>
       </div>

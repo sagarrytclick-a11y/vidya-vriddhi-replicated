@@ -20,13 +20,13 @@ export default function ContactPage() {
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
           <span className="inline-block px-4 py-1.5 mb-6 text-sm font-semibold tracking-wider text-[#EF7D31] uppercase bg-[#EF7D31]/10 rounded-full">
-            Contact Vidya Vriddhi
+            Contact VidyaVriddhi
           </span>
           <h1 className="text-4xl md:text-6xl font-extrabold text-white mb-6 tracking-tight">
             Start Your <span className="text-[#EF7D31]">MBBS Journey</span>
           </h1>
           <p className="text-lg md:text-xl text-slate-400 max-w-2xl mx-auto leading-relaxed">
-            Have questions about studying MBBS abroad? Our expert medical education consultants are here to help you achieve your dream of becoming a doctor.
+            Have questions about studying MBBS abroad? Our expert medical education ants are here to help you achieve your dream of becoming a doctor.
           </p>
           
           <div className="mt-8">
@@ -34,7 +34,7 @@ export default function ContactPage() {
               onClick={openModal}
               className="inline-flex items-center gap-2 bg-[#EF7D31] hover:bg-[#4A90E2] text-white font-bold rounded-2xl transition-all duration-300 px-8 py-4 text-lg shadow-xl hover:shadow-2xl"
             >
-              Free MBBS Consultation
+              Free MBBS Session
               <ArrowRight size={20} />
             </button>
           </div>

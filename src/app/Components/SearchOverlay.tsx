@@ -171,17 +171,36 @@ const SearchOverlay: React.FC<SearchOverlayProps> = ({ isOpen, onClose }) => {
                             className="block p-4 bg-white border border-gray-200 rounded-lg hover:border-orange-300 hover:shadow-md transition-all"
                           >
                             <div className="flex items-center justify-between">
-                              <div className="flex-1">
-                                <h5 className="font-semibold text-gray-900">{college.name}</h5>
-                                <p className="text-sm text-gray-600 flex items-center mt-1">
-                                  <span>{college.country_ref?.flag}</span>
-                                  <span className="ml-1">{college.country_ref?.name}</span>
-                                </p>
-                                {college.overview?.description && (
-                                  <p className="text-sm text-gray-500 mt-2 line-clamp-2">
-                                    {college.overview.description}
+                              <div className="flex items-center space-x-4 flex-1">
+                                <div className="flex-shrink-0">
+                                  {college.banner_url ? (
+                                    <img 
+                                      src={college.banner_url} 
+                                      alt={college.name}
+                                      className="w-16 h-16 object-cover rounded-lg border border-gray-200"
+                                      onError={(e) => {
+                                        const target = e.target as HTMLImageElement;
+                                        target.style.display = 'none';
+                                        target.nextElementSibling?.classList.remove('hidden');
+                                      }}
+                                    />
+                                  ) : null}
+                                  <div className={`w-16 h-16 bg-gray-100 rounded-lg flex items-center justify-center ${college.banner_url ? 'hidden' : ''}`}>
+                                    <GraduationCap className="w-8 h-8 text-gray-400" />
+                                  </div>
+                                </div>
+                                <div className="flex-1">
+                                  <h5 className="font-semibold text-gray-900">{college.name}</h5>
+                                  <p className="text-sm text-gray-600 flex items-center mt-1">
+                                    <span>{college.country_ref?.flag}</span>
+                                    <span className="ml-1">{college.country_ref?.name}</span>
                                   </p>
-                                )}
+                                  {college.overview?.description && (
+                                    <p className="text-sm text-gray-500 mt-2 line-clamp-2">
+                                      {college.overview.description}
+                                    </p>
+                                  )}
+                                </div>
                               </div>
                               <div className="text-orange-500">
                                 <Search className="w-5 h-5" />
@@ -209,16 +228,26 @@ const SearchOverlay: React.FC<SearchOverlayProps> = ({ isOpen, onClose }) => {
                             className="block p-4 bg-white border border-gray-200 rounded-lg hover:border-orange-300 hover:shadow-md transition-all"
                           >
                             <div className="flex items-center justify-between">
-                              <div className="flex-1">
-                                <h5 className="font-semibold text-gray-900 flex items-center">
-                                  <span className="text-2xl mr-3">{country.flag}</span>
-                                  {country.name}
-                                </h5>
-                                {country.description && (
-                                  <p className="text-sm text-gray-500 mt-2 line-clamp-2">
-                                    {country.description}
-                                  </p>
-                                )}
+                              <div className="flex items-center space-x-4 flex-1">
+                                <div className="flex-shrink-0">
+                                  {country.flag ? (
+                                    <div className="w-16 h-16 bg-gray-100 rounded-lg flex items-center justify-center text-3xl border border-gray-200">
+                                      {country.flag}
+                                    </div>
+                                  ) : (
+                                    <div className="w-16 h-16 bg-gray-100 rounded-lg flex items-center justify-center border border-gray-200">
+                                      <Globe className="w-8 h-8 text-gray-400" />
+                                    </div>
+                                  )}
+                                </div>
+                                <div className="flex-1">
+                                  <h5 className="font-semibold text-gray-900">{country.name}</h5>
+                                  {country.description && (
+                                    <p className="text-sm text-gray-500 mt-2 line-clamp-2">
+                                      {country.description}
+                                    </p>
+                                  )}
+                                </div>
                               </div>
                               <div className="text-orange-500">
                                 <Search className="w-5 h-5" />
@@ -246,13 +275,20 @@ const SearchOverlay: React.FC<SearchOverlayProps> = ({ isOpen, onClose }) => {
                             className="block p-4 bg-white border border-gray-200 rounded-lg hover:border-orange-300 hover:shadow-md transition-all"
                           >
                             <div className="flex items-center justify-between">
-                              <div className="flex-1">
-                                <h5 className="font-semibold text-gray-900">{exam.name}</h5>
-                                {exam.description && (
-                                  <p className="text-sm text-gray-500 mt-2 line-clamp-2">
-                                    {exam.description}
-                                  </p>
-                                )}
+                              <div className="flex items-center space-x-4 flex-1">
+                                <div className="flex-shrink-0">
+                                  <div className="w-16 h-16 bg-gray-100 rounded-lg flex items-center justify-center border border-gray-200">
+                                    <FileText className="w-8 h-8 text-gray-400" />
+                                  </div>
+                                </div>
+                                <div className="flex-1">
+                                  <h5 className="font-semibold text-gray-900">{exam.name}</h5>
+                                  {exam.description && (
+                                    <p className="text-sm text-gray-500 mt-2 line-clamp-2">
+                                      {exam.description}
+                                    </p>
+                                  )}
+                                </div>
                               </div>
                               <div className="text-orange-500">
                                 <Search className="w-5 h-5" />

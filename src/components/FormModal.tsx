@@ -130,6 +130,9 @@ export const FormModal: React.FC = () => {
                   { label: "Select an option", value: "" },
                   { label: "Study Abroad", value: "study-abroad" },
                   { label: "MBBS Abroad", value: "mbbs-abroad" },
+                  { label: "Online MBA", value: "online-mba" },
+                  { label: "Regular MBA", value: "regular-mba" },
+                  { label: "MBBS", value: "mbbs" },
                 ]}
               />
 

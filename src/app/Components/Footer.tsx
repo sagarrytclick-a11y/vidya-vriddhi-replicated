@@ -144,7 +144,7 @@ const Footer = () => {
               className="w-full bg-linear-to-r from-[#EF7D31] to-[#EF7D31] hover:from-[#4A90E2] hover:to-[#4A90E2] text-white font-semibold py-3 px-6 rounded-full transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl flex items-center justify-center gap-2"
             >
               <Phone size={18} />
-              Book a Consultancy
+              Book Your Session
             </button>
           </div>
         </div>
@@ -158,7 +158,7 @@ const Footer = () => {
             </div>
             <div className="mt-8 text-center max-w-4xl mx-auto">
               <p className="text-white text-xs leading-relaxed">
-                Disclaimer: Vidya Vriddhi provides guidance and counseling services
+                Disclaimer: VidyaVriddhi provides guidance and counseling services
                 based on experience and available information. We do not guarantee admission,
                 visa approval, or outcomes, as final decisions are made by respective
                 institutions and authorities.

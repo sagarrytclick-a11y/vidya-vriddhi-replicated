@@ -11,7 +11,7 @@ export default function MainLayout({
   return (
     <div className="min-h-screen bg-[#F8FAFC]">
       <Navbar />
-      <div className="pt-20 lg:pt-28">
+      <div className="pt-20 lg:pt-18">
         {children}
       </div>
       <Footer />

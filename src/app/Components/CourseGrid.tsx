@@ -149,7 +149,7 @@ export default function CourseGrid({ courses: propCourses }: CourseGridProps) {
   }, [courses, searchTerm, selectedCategory, selectedLevel])
 
   return (
-    <div className="min-h-screen bg-gray-50 text-gray-900">
+    <div className=" bg-gray-50 text-gray-900">
       {/* Header */}
       <div className="bg-white border-b border-orange-200">
         <div className="max-w-7xl mx-auto px-4 py-6">
