@@ -43,7 +43,7 @@ export const emailTemplates = {
       <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
         <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 30px; border-radius: 10px; color: white; text-align: center;">
           <h1 style="margin: 0; font-size: 28px;">New Student Enquiry</h1>
-          <p style="margin: 10px 0 0 0; opacity: 0.9;">Vidya Vriddhi</p>
+          <p style="margin: 10px 0 0 0; opacity: 0.9;">VidyaVriddhi</p>
         </div>
         
         <div style="background: #f8f9fa; padding: 30px; border-radius: 10px; margin: 20px 0;">
@@ -83,13 +83,13 @@ export const emailTemplates = {
         </div>
         
         <div style="text-align: center; padding: 20px; color: #666; font-size: 14px;">
-          <p>This enquiry was submitted through the Vidya Vriddhi website.</p>
+          <p>This enquiry was submitted through the VidyaVriddhi website.</p>
           <p>Please respond to the student as soon as possible.</p>
         </div>
       </div>
     `,
     text: `
-      New Student Enquiry - Vidya Vriddhi
+      New Student Enquiry - VidyaVriddhi
       
       Student Details:
       Name: ${data.name}
@@ -99,13 +99,13 @@ export const emailTemplates = {
       Interest: ${data.interest === 'study-abroad' ? 'Study Abroad' : 'MBBS Abroad'}
       ${data.message ? `Message: ${data.message}` : ''}
       
-      This enquiry was submitted through the Vidya Vriddhi website.
+      This enquiry was submitted through the VidyaVriddhi website.
       Please respond to the student as soon as possible.
     `
   }),
 
   enquiryConfirmation: (data: { name: string; interest: string }) => ({
-    subject: 'Thank You for Your Enquiry - Vidya Vriddhi',
+    subject: 'Thank You for Your Enquiry -  Vriddhi',
     html: `
       <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
         <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 30px; border-radius: 10px; color: white; text-align: center;">

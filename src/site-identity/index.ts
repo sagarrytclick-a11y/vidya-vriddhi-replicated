@@ -63,8 +63,8 @@ export interface SiteIdentity {
 }
 
 export const SITE_IDENTITY: SiteIdentity = {
-  name: "Vidya Vriddhi",
-  shortName: "Vidya Vriddhi",
+  name: "VidyaVriddhi",
+  shortName: "VidyaVriddhi",
   description: "Comprehensive education services and college guidance for international students",
   tagline: "Get Your College",
   domain: "vidyavriddhi.com",
@@ -98,7 +98,7 @@ general: "Abhishek@vidyavriddhi.com",
   },
   assets: SITE_ASSETS,
   meta: {
-    title: "Vidya Vriddhi - Get Your College",
+    title: "VidyaVriddhi - Get Your College",
     description: "Comprehensive education services and college guidance for international students. Expert counseling, university admissions, and career guidance.",
     keywords: [
       "education",
@@ -109,7 +109,7 @@ general: "Abhishek@vidyavriddhi.com",
       "study abroad",
       "education services"
     ],
-    author: "Vidya Vriddhi",
+    author: "VidyaVriddhi",
     ogImage: "/logo.png",
   },
   business: {

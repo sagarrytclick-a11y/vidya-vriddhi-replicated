@@ -101,7 +101,7 @@ const legacyTimeline = [
   },
   {
     year: "Today",
-    title: "Leading MBBS Abroad Consultancy",
+    title: "Leading MBBS Abroad Session",
     description:
       "Trusted by thousands of students and parents for transparent, affordable, and reliable medical education abroad."
   }
@@ -118,7 +118,7 @@ export default function AboutPage() {
   {/* LEFT CONTENT */}
   <div>
     <span className="text-sm font-semibold tracking-widest text-[#EF7D31] uppercase">
-      About Vidya Vriddhi
+      About VidyaVriddhi
     </span>
 
     <h1 className="mt-6 text-xl sm:text-5xl lg:text-4xl font-bold text-slate-900 leading-tight">
@@ -127,7 +127,7 @@ export default function AboutPage() {
     </h1>
 
     <p className="mt-6 text-lg text-slate-600 max-w-xl leading-relaxed">
-      We are India's leading consultancy for MBBS abroad, helping students 
+      We are India's leading session for MBBS abroad, helping students 
       secure admissions in NMC & WHO approved universities with zero 
       donation and complete support.
     </p>
@@ -203,7 +203,7 @@ export default function AboutPage() {
                 Your Medical Career <span className="text-transparent bg-clip-text bg-linear-to-r from-[#EF7D31] to-[#EF7D31]">Starts Here</span>
               </h2>
               <p className="text-slate-500 text-lg leading-relaxed mb-6">
-                Founded in 2018, Vidya Vriddhi specializes in MBBS admissions 
+                Founded in 2018, VidyaVriddhi specializes in MBBS admissions 
                 with a focus on transparency, affordability, and student success.
               </p>
               <p className="text-slate-500 text-lg leading-relaxed">
@@ -261,7 +261,7 @@ export default function AboutPage() {
           Building Medical Careers Since 2018
         </h2>
         <p className="text-lg text-slate-600 leading-relaxed">
-          From a small startup to India's trusted MBBS abroad consultancy, 
+          From a small startup to India's trusted MBBS abroad session, 
           our journey has been defined by student success.
         </p>
       </div>
@@ -363,7 +363,7 @@ export default function AboutPage() {
             onClick={openModal}
             className="inline-flex items-center gap-2 bg-white text-[#EF7D31] font-bold rounded-2xl transition-all duration-300 px-8 py-4 text-lg hover:bg-[#F8FAFC]"
           >
-            Get Free Consultation
+            Book Your Session
             <ArrowRight size={20} />
           </button>
         </div>

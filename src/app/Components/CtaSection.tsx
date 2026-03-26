@@ -34,14 +34,14 @@ const CtaSection: React.FC = () => {
         {/* Enhanced sub text */}
         <p className="mx-auto mt-4 sm:mt-6 max-w-3xl text-lg sm:text-xl text-[#64748B] leading-relaxed mb-6 sm:mb-8 px-4">
           Join <strong className="text-[#4A90E2]">15,000+ successful students</strong> who've transformed their lives through our expert guidance.
-          Book your <strong className="text-[#EF7D31]">FREE consultation</strong> today and discover your path to global success.
+          Book your <strong className="text-[#EF7D31]">FREE session</strong> today and discover your path to global success.
         </p>
 
         {/* Feature highlights */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6 lg:gap-8 max-w-4xl mx-auto mb-6 sm:mb-8">
           <div className="bg-[#FFFFFF]/5 backdrop-blur-sm border border-[#FFFFFF]/10 rounded-xl sm:rounded-2xl p-4 sm:p-6">
             <div className="text-2xl sm:text-3xl font-bold text-[#4A90E2] mb-1 sm:mb-2">FREE</div>
-            <div className="text-white font-semibold mb-1 text-sm sm:text-base">Initial Consultation</div>
+            <div className="text-white font-semibold mb-1 text-sm sm:text-base">Initial Session</div>
             <div className="text-[#64748B] text-xs sm:text-sm">No obligation assessment</div>
           </div>
           <div className="bg-[#FFFFFF]/5 backdrop-blur-sm border border-[#FFFFFF]/10 rounded-xl sm:rounded-2xl p-4 sm:p-6">
@@ -62,7 +62,7 @@ const CtaSection: React.FC = () => {
             onClick={openModal}
             className="group bg-[#EF7D31] text-white px-6 sm:px-8 lg:px-10 py-3 sm:py-4 text-base sm:text-lg font-semibold rounded-full items-center gap-2 sm:gap-3 flex hover:bg-[#4A90E2] transition-all duration-300 transform hover:scale-105 shadow-lg"
           >
-            Book FREE Consultation
+             Book a Session
             <span className="text-xl sm:text-2xl">⚡</span>
           </button>
 

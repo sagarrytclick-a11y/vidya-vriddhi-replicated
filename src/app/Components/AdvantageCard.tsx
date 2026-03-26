@@ -70,7 +70,7 @@ export default function VidiyaVridhiAdvantage() {
           </div>
 
           <button className="group flex items-center gap-3 bg-[#1E212B] text-white px-10 py-5 rounded-2xl font-bold hover:bg-[#EF7D31] transition-all duration-300 shadow-xl shadow-[#E2E8F0] hover:shadow-[#4A90E2]">
-            Book Free Consultation
+            Book Free Session
             <Zap className="w-5 h-5 fill-current transition-transform group-hover:scale-125" />
           </button>
         </div>

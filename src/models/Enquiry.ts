@@ -5,7 +5,7 @@ export interface IEnquiry extends Document {
   email: string;
   phone: string;
   city: string;
-  interest: 'study-abroad' | 'mbbs-abroad';
+  interest: 'study-abroad' | 'mbbs-abroad' | 'online-mba' | 'regular-mba' | 'mbbs';
   message?: string;
   status: 'pending' | 'contacted' | 'resolved' | 'closed';
   related_college_id?: Types.ObjectId;
@@ -46,8 +46,8 @@ const EnquirySchema = new Schema<IEnquiry>(
       type: String,
       required: [true, 'Interest is required'],
       enum: {
-        values: ['study-abroad', 'mbbs-abroad'],
-        message: 'Interest must be either study-abroad or mbbs-abroad'
+        values: ['study-abroad', 'mbbs-abroad', 'online-mba', 'regular-mba', 'mbbs'],
+        message: 'Interest must be one of: study-abroad, mbbs-abroad, online-mba, regular-mba, mbbs'
       }
     },
     message: {
@@ -84,5 +84,9 @@ EnquirySchema.index({ status: 1 });
 EnquirySchema.index({ interest: 1 });
 EnquirySchema.index({ email: 1 });
 
-export default mongoose.models.Enquiry ||
-  mongoose.model<IEnquiry>("Enquiry", EnquirySchema);
+// Clear the cached model to ensure new schema is loaded
+if (mongoose.models.Enquiry) {
+  delete mongoose.models.Enquiry;
+}
+
+export default mongoose.model<IEnquiry>("Enquiry", EnquirySchema);

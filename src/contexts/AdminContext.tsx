@@ -176,7 +176,7 @@ export interface Enquiry {
   email: string
   phone: string
   city: string
-  interest: string
+  interest: 'study-abroad' | 'mbbs-abroad' | 'online-mba' | 'regular-mba' | 'mbbs'
   message: string
   status: 'pending' | 'contacted' | 'resolved' | 'closed'
   createdAt?: string
