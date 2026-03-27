@@ -21,9 +21,9 @@ export default function PGDMComponent() {
       <PGSpecializationsSection />
       <StatisticsSection />
       <EmploymentPartners />
+      <PgdmMbaCategory />
       <WhatWeOfferSection />
       <PGDMAdmissionSection />
-      <PgdmMbaCategory />
       <MBAApplicationCTA />
       <CourseCategories />
       <PGDMFAQSection />
