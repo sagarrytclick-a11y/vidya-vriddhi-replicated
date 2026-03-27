@@ -35,6 +35,7 @@ export interface SiteIdentity {
       linkedin: string;
       facebook?: string;
       twitter?: string;
+      youtube?:string;
     };
   };
   assets: {
