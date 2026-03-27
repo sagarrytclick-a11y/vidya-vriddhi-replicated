@@ -9,7 +9,10 @@ import {
   Phone,
   SendHorizontal,
   MapPin,
-  MessageCircle
+  MessageCircle,
+  Instagram,
+  Linkedin,
+  Youtube
 } from 'lucide-react';
 import { SITE_IDENTITY } from "@/site-identity";
 import { useContactInfo, createMailtoLink, createTelLink, createWhatsAppLink } from "@/hooks/useContactInfo";
@@ -59,24 +62,36 @@ const Footer = () => {
             </p>
             <div className="flex gap-3 sm:gap-4 text-white">
               <a
-                href={socials.instagram}
+                href="https://wa.me/919839865347"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="hover:text-[#4A90E2] hover:scale-110 transition-all duration-200"
               >
-                <Globe className="w-4 h-4 sm:w-5 sm:h-5" />
+                <MessageCircle className="w-4 h-4 sm:w-5 sm:h-5" />
               </a>
               <a
-                href={createMailtoLink(emails.info)}
+                href="https://www.instagram.com/vidyavriddhi?igsh=N3NoeGRlOG4ycTB6"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="hover:text-[#4A90E2] hover:scale-110 transition-all duration-200"
               >
-                <Mail className="w-4 h-4 sm:w-5 sm:h-5" />
+                <Instagram className="w-4 h-4 sm:w-5 sm:h-5" />
               </a>
               <a
-                href={createTelLink(phones.primary)}
+                href="https://www.linkedin.com/company/vidya-vriddhi/posts/?feedView=all"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="hover:text-[#4A90E2] hover:scale-110 transition-all duration-200"
               >
-                <Phone className="w-4 h-4 sm:w-5 sm:h-5" />
+                <Linkedin className="w-4 h-4 sm:w-5 sm:h-5" />
+              </a>
+              <a
+                href="https://youtube.com/@vidyavriddhi-u6y?si=D6bIbwNliMCbOGtW"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-[#4A90E2] hover:scale-110 transition-all duration-200"
+              >
+                <Youtube className="w-4 h-4 sm:w-5 sm:h-5" />
               </a>
             </div>
           </div>
