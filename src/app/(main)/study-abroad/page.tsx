@@ -1,8 +1,4 @@
-'use client'
-
-import React, { useState, useEffect, useCallback, useMemo } from 'react'
-import Link from 'next/link'
-import { Search, Building, Calendar, Award, ArrowRight, GraduationCap, MapPin } from 'lucide-react'
+import StudyAbroadClient from './StudyAbroadClient'
 
 interface College {
   _id: string
@@ -29,124 +25,71 @@ interface College {
   }
 }
 
-export default function StudyAbroadPage() {
-  const [colleges, setColleges] = useState<College[]>([])
-  const [displayedColleges, setDisplayedColleges] = useState<College[]>([])
-  const [loading, setLoading] = useState(true)
-  const [isLoadingMore, setIsLoadingMore] = useState(false)
-  const [hasMore, setHasMore] = useState(true)
-  const [searchTerm, setSearchTerm] = useState('')
-  const [selectedCountry, setSelectedCountry] = useState('all')
-  const itemsPerPage = 9
-
-  const fetchStudyAbroadColleges = async () => {
-    try {
-      setLoading(true)
-      console.log('🔍 [Study Abroad Page] Fetching colleges...')
+async function getStudyAbroadColleges(): Promise<College[]> {
+  try {
+    console.log('🔍 [Study Abroad Page] Fetching colleges...')
+    
+    // Use absolute URL for server-side fetch
+    const baseUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000'
+    
+    // Fetch all colleges without limit
+    let response = await fetch(`${baseUrl}/api/colleges?college_type=study_abroad`, {
+      cache: 'no-store'
+    })
+    let result = await response.json()
+    
+    console.log('🔍 [Study Abroad Page] API response with college_type filter:', result)
+    
+    let studyAbroadColleges: College[] = []
+    
+    if (result.success && result.data.colleges.length > 0) {
+      studyAbroadColleges = result.data.colleges
+      console.log('🔍 [Study Abroad Page] Found colleges with college_type:', studyAbroadColleges.length)
+    } else {
+      // Fallback: fetch all colleges and filter manually
+      console.log('🔍 [Study Abroad Page] No colleges with college_type, fetching all colleges...')
+      response = await fetch(`${baseUrl}/api/colleges`, {
+        cache: 'no-store'
+      })
+      result = await response.json()
       
-      // Fetch all colleges without limit
-      let response = await fetch('/api/colleges?college_type=study_abroad')
-      let result = await response.json()
-      
-      console.log('🔍 [Study Abroad Page] API response with college_type filter:', result)
-      
-      let studyAbroadColleges = []
-      
-      if (result.success && result.data.colleges.length > 0) {
-        studyAbroadColleges = result.data.colleges
-        console.log('🔍 [Study Abroad Page] Found colleges with college_type:', studyAbroadColleges.length)
-      } else {
-        // Fallback: fetch all colleges and filter manually
-        console.log('🔍 [Study Abroad Page] No colleges with college_type, fetching all colleges...')
-        response = await fetch('/api/colleges')
-        result = await response.json()
+      if (result.success) {
+        const allColleges = result.data.colleges
+        console.log('🔍 [Study Abroad Page] Total colleges fetched:', allColleges.length)
         
-        if (result.success) {
-          const allColleges = result.data.colleges
-          console.log('🔍 [Study Abroad Page] Total colleges fetched:', allColleges.length)
-          
-          // Filter out MBBS colleges (keep everything else as study abroad)
-          const mbbsColleges = allColleges.filter((college: any) => 
-            college.slug?.toLowerCase().includes('mbbs') || 
-            college.name?.toLowerCase().includes('medical') ||
-            college.name?.toLowerCase().includes('mbbs') ||
-            college.college_type === 'mbbs_abroad'
-          )
-          
-          studyAbroadColleges = allColleges.filter((college: any) => !mbbsColleges.includes(college))
-          console.log('🔍 [Study Abroad Page] MBBS colleges excluded:', mbbsColleges.length)
-          console.log('🔍 [Study Abroad Page] Study abroad colleges after filtering:', studyAbroadColleges.length)
-        }
+        // Filter out MBBS colleges (keep everything else as study abroad)
+        const mbbsColleges = allColleges.filter((college: any) => 
+          college.slug?.toLowerCase().includes('mbbs') || 
+          college.name?.toLowerCase().includes('medical') ||
+          college.name?.toLowerCase().includes('mbbs') ||
+          college.college_type === 'mbbs_abroad'
+        )
+        
+        studyAbroadColleges = allColleges.filter((college: any) => !mbbsColleges.includes(college))
+        console.log('🔍 [Study Abroad Page] MBBS colleges excluded:', mbbsColleges.length)
+        console.log('🔍 [Study Abroad Page] Study abroad colleges after filtering:', studyAbroadColleges.length)
       }
-      
-      setColleges(studyAbroadColleges)
-    } catch (error) {
-      console.error('Error fetching study abroad colleges:', error)
-    } finally {
-      setLoading(false)
     }
-  }
-
-  const filteredColleges = useMemo(() => colleges.filter(college => {
-    const matchesSearch = !searchTerm ||
-      college.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      college.overview?.description?.toLowerCase().includes(searchTerm.toLowerCase())
-
-    const matchesCountry = selectedCountry === 'all' ||
-      college.country_ref?.name === selectedCountry
-
-    return matchesSearch && matchesCountry
-  }), [colleges, searchTerm, selectedCountry])
-
-  const countries = [...new Set(colleges.map(college => college.country_ref?.name).filter(Boolean))]
-
-  useEffect(() => {
-    fetchStudyAbroadColleges()
-  }, [])
-
-  // Reset displayed colleges when filters change
-  useEffect(() => {
-    const initialBatch = filteredColleges.slice(0, itemsPerPage)
-    setDisplayedColleges(initialBatch)
-    setHasMore(filteredColleges.length > itemsPerPage)
-  }, [filteredColleges, itemsPerPage])
-
-  // Load more colleges
-  const loadMore = useCallback(() => {
-    if (isLoadingMore || !hasMore) return
     
-    setIsLoadingMore(true)
-    
-    // Simulate loading delay for better UX
-    setTimeout(() => {
-      const currentLength = displayedColleges.length
-      const nextBatch = filteredColleges.slice(currentLength, currentLength + itemsPerPage)
-      
-      setDisplayedColleges(prev => [...prev, ...nextBatch])
-      setHasMore(currentLength + itemsPerPage < filteredColleges.length)
-      setIsLoadingMore(false)
-    }, 300)
-  }, [displayedColleges.length, filteredColleges, hasMore, isLoadingMore, itemsPerPage])
-
-  if (loading) {
-    return (
-      <div className="min-h-screen bg-white flex items-center justify-center">
-        <div className="text-center">
-          <div className="w-12 h-12 border-2 border-gray-200 border-t-gray-600 rounded-full animate-spin mx-auto mb-4"></div>
-          <p className="text-gray-500 text-sm">Loading study abroad colleges...</p>
-        </div>
-      </div>
-    )
+    return studyAbroadColleges
+  } catch (error) {
+    console.error('Error fetching study abroad colleges:', error)
+    return []
   }
+}
+
+export default async function StudyAbroadPage() {
+  const colleges = await getStudyAbroadColleges()
 
   return (
     <div className="min-h-screen bg-white">
       {/* Hero Section with Banner */}
-      <div className="relative h-screen max-h-[600px] overflow-hidden">
+      <div className="relative w-full h-screen max-h-[600px] overflow-hidden hidden md:block">
         <img
           src="/studyAbroad/image.png"
           alt="Study Abroad"
-          className="absolute inset-0 w-full h-full object-cover"
+          className="absolute inset-0 w-full h-full object-cover object-center"
+          sizes="100vw"
         />
 
         <div className="relative z-10 max-w-6xl mx-auto px-4 h-full flex items-center">
@@ -171,156 +114,7 @@ export default function StudyAbroadPage() {
         </div>
       </div>
 
-      {/* Filters */}
-      <div className="max-w-6xl mx-auto px-4 py-6">
-        <div className="bg-white rounded-xl p-4 shadow-sm border border-gray-200">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
-            <div className="relative">
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-[#EF7D31] h-4 w-4" />
-              <input
-                placeholder="Search colleges..."
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-                className="w-full pl-10 pr-3 py-2 bg-[#F8FAFC] border border-[#E2E8F0] rounded-lg text-sm focus:outline-none focus:border-[#EF7D31] focus:bg-white"
-              />
-            </div>
-
-            <select
-              value={selectedCountry}
-              onChange={(e) => setSelectedCountry(e.target.value)}
-              className="w-full px-3 py-2 bg-[#F8FAFC] border border-[#E2E8F0] rounded-lg text-sm focus:outline-none focus:border-[#EF7D31] focus:bg-white"
-            >
-              <option value="all">All Countries</option>
-              {countries.map((country) => (
-                <option key={country} value={country}>{country}</option>
-              ))}
-            </select>
-
-            <button
-              onClick={() => { setSearchTerm(''); setSelectedCountry('all') }}
-              className="w-full px-3 py-2 bg-[#EF7D31]/10 border border-[#EF7D31]/20 rounded-lg text-sm text-[#EF7D31] hover:bg-[#EF7D31]/20 transition-colors"
-            >
-              Clear Filters
-            </button>
-          </div>
-        </div>
-      </div>
-
-      {/* Colleges Grid */}
-      <div className="max-w-6xl mx-auto px-4 py-6">
-        {displayedColleges.length === 0 ? (
-          <div className="text-center py-16">
-            <GraduationCap className="w-16 h-16 text-gray-300 mx-auto mb-4" />
-            <h3 className="text-lg font-semibold text-gray-900 mb-2">No colleges found</h3>
-            <p className="text-gray-500 text-sm">Try adjusting your search or filters</p>
-          </div>
-        ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {displayedColleges.map((college) => (
-              <div key={college._id} className="bg-white rounded-xl border border-gray-200 shadow-sm hover:shadow-lg transition-shadow flex flex-col h-full">
-                {/* College Image */}
-                <div className="h-48 bg-linear-to-br from-[#EF7D31]/10 to-[#EF7D31]/20 rounded-t-xl overflow-hidden shrink-0">
-                  {college.banner_url ? (
-                    <img
-                      src={college.banner_url}
-                      alt={college.name}
-                      className="w-full h-full object-cover"
-                    />
-                  ) : (
-                    <div className="w-full h-full flex items-center justify-center">
-                      <GraduationCap className="w-16 h-16 text-[#EF7D31]" />
-                    </div>
-                  )}
-                </div>
-
-                {/* College Info */}
-                <div className="p-6 flex flex-col grow">
-                  <div className="flex items-start justify-between mb-3">
-                    <div>
-                      <h3 className="text-lg font-semibold text-gray-900 mb-1">{college.name}</h3>
-                      <div className="flex items-center gap-2 text-sm text-gray-500">
-                        <MapPin className="w-4 h-4" />
-                        <span>{college.country_ref?.name}</span>
-                        <span className="text-[#EF7D31] font-medium">• {college.country_ref?.flag}</span>
-                      </div>
-                    </div>
-                    <span className="bg-[#EF7D31]/10 whitespace-normal text-[#EF7D31] text-xs font-medium px-2.5 py-1 rounded-full inline-flex items-center text-center leading-tight max-w-[120px]">
-                      Study Abroad
-                    </span>
-                  </div>
-
-                  <p className="text-gray-600 text-sm line-clamp-2 mb-4">
-                    {college.overview?.description || 'Quality international education with global opportunities.'}
-                  </p>
-
-                  {/* Key Highlights */}
-                  {college.key_highlights?.features?.length > 0 && (
-                    <div className="mb-4">
-                      <div className="flex flex-wrap gap-1">
-                        {college.key_highlights.features.slice(0, 2).map((feature, index) => (
-                          <span key={index} className="inline-block px-2 py-1 bg-[#EF7D31]/10 text-[#EF7D31] text-xs rounded-lg">
-                            {feature}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
-                  )}
-
-                  {/* Quick Info */}
-                  <div className="flex items-center justify-between text-xs text-gray-500 mb-4">
-                    <div className="flex items-center gap-1">
-                      <Building className="w-3 h-3" />
-                      <span>{college.establishment_year || 'N/A'}</span>
-                    </div>
-                    <div className="flex items-center gap-1">
-                      <Award className="w-3 h-3 text-[#EF7D31]" />
-                      <span>{college.ranking?.country_ranking || 'Ranked'}</span>
-                    </div>
-                  </div>
-
-                  {/* CTA Button - Always at bottom */}
-                  <div className="mt-auto">
-                    <Link href={`/colleges/${college.slug}`}>
-                      <button className="w-full bg-[#EF7D31] hover:bg-[#4A90E2] text-white py-2 rounded-lg font-medium text-sm transition-colors flex items-center justify-center gap-2">
-                        View Details
-                        <ArrowRight className="w-4 h-4" />
-                      </button>
-                    </Link>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        )}
-        
-        {/* Load More Button */}
-        {hasMore && (
-          <div className="flex justify-center mt-8">
-            <button
-              onClick={loadMore}
-              disabled={isLoadingMore}
-              className="bg-[#EF7D31] hover:bg-[#4A90E2] disabled:bg-gray-300 text-white px-6 py-3 rounded-lg font-medium text-sm transition-colors flex items-center gap-2"
-            >
-              {isLoadingMore ? (
-                <>
-                  <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
-                  Loading...
-                </>
-              ) : (
-                <>
-                  Load More
-                  <ArrowRight className="w-4 h-4" />
-                </>
-              )}
-            </button>
-          </div>
-        )}
-        
-        {/* Results count */}
-        <div className="text-center mt-4 text-sm text-gray-600">
-          Showing {displayedColleges.length} of {filteredColleges.length} colleges
-        </div>
-      </div>
+      <StudyAbroadClient initialColleges={colleges} />
     </div>
   )
 }

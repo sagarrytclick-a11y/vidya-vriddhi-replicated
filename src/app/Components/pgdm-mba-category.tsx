@@ -72,7 +72,7 @@ export default function PgdmMbaCategory() {
       price: '₹2,10,000',
       originalPrice: '₹2,80,000',
       category: 'PGDM',
-      image: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80&w=800',
+      image: 'https://i.pinimg.com/1200x/63/42/31/6342310d1a1ac00f5e744b386c0a49d6.jpg ',
       description: 'Accelerated program designed for working leads transitioning into C-suite roles.',
       highlights: ['Weekend Batches', 'Networking Events', 'Case Study Focus']
     },
@@ -87,7 +87,7 @@ export default function PgdmMbaCategory() {
       price: '₹1,25,000',
       originalPrice: '₹1,75,000',
       category: 'MBA',
-      image: 'https://images.unsplash.com/photo-1551288049-bbbda5366392?auto=format&fit=crop&q=80&w=800',
+      image: 'https://i.pinimg.com/736x/4d/6c/22/4d6c227e8e3521a3e19d0d43f2f1557a.jpg',
       description: 'Bridging traditional financial management with the future of digital banking and blockchain.',
       highlights: ['Stock Market Sim', 'Fintech Certifications', 'UGC Approved']
     }
