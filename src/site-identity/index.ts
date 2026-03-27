@@ -91,9 +91,10 @@ general: "Abhishek@vidyavriddhi.com",
       mapLink: "https://goo.gl/maps/example",
     },
     socials: {
-      whatsapp: "https://wa.me/916239311536",
-      instagram: "https://instagram.com/educationtimesabroad",
-      linkedin: "https://linkedin.com/company/educationtimesabroad",
+      whatsapp: "https://wa.me/919839865347",
+      instagram: "https://www.instagram.com/vidyavriddhi?igsh=N3NoeGRlOG4ycTB6",
+      linkedin: "https://www.linkedin.com/company/vidya-vriddhi/posts/?feedView=all",
+      youtube: "https://youtube.com/@vidyavriddhi-u6y?si=D6bIbwNliMCbOGtW"
     },
   },
   assets: SITE_ASSETS,
