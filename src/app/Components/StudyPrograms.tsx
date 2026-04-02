@@ -1,5 +1,6 @@
 "use client"
 import React from 'react';
+import Link from 'next/link';
 import { BookOpen, Target, BrainCircuit, Lightbulb, Award, Globe, ArrowRight, GraduationCap, ShieldCheck, Users, Stethoscope } from 'lucide-react';
 
 export default function StudyPrograms() {
@@ -118,8 +119,10 @@ export default function StudyPrograms() {
         {/* CTA Section */}
         <div className="text-center">
           <div className="inline-flex items-center gap-2 sm:gap-3 bg-[#EF7D31] cursor-pointer text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full font-bold hover:shadow-lg transition-all transform hover:scale-105">
+            <Link href={`/mbbs-abroad`}> 
             <span className="text-sm sm:text-base">Explore MBBS Programs</span>
             <ArrowRight size={20} className="w-4 h-4 sm:w-5 sm:h-5" />
+            </Link>
           </div>
         </div>
       </div>
