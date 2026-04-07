@@ -35,7 +35,7 @@ export interface SiteIdentity {
       linkedin: string;
       facebook?: string;
       twitter?: string;
-      youtube?:string;
+      youtube?: string;
     };
   };
   assets: {
@@ -82,8 +82,8 @@ export const SITE_IDENTITY: SiteIdentity = {
     },
     email: {
       support: "support@vidyavriddhi.com",
-admissions: "admissions@vidyavriddhi.com",
-general: "Abhishek@vidyavriddhi.com",
+      admissions: "admissions@vidyavriddhi.com",
+      general: "Abhishek@vidyavriddhi.com",
     },
     address: {
       office: "S0-1, Geniefolks Building (2nd Floor), Block A, Plot No. A-28, Sector 4, Noida, Uttar Pradesh - 201301",

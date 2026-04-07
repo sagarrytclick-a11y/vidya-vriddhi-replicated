@@ -132,10 +132,11 @@ export default function Navbar() {
   const navItems = [
     { name: "Scopes & Avenues", href: "/", hasDropdown: true },
     { name: "MBA", href: "/online-mba", hasDropdown: true },
+    { name: "B.Tech", href: "/btech", hasDropdown: false },
     { name: "Colleges", href: "/colleges", hasDropdown: true },
     { name: "Exams", href: "/exams", hasDropdown: true },
     { name: "Countries", href: "/countries", hasDropdown: true },
-    { name: "About", href: "/about" },
+    // { name: "About", href: "/about" },
   ];
 
   const dropdownContent = {
