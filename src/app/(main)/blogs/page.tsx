@@ -210,7 +210,7 @@ export default function BlogsPage() {
                         </div>
                       </div>
                       <span className="inline-block px-3 py-1 bg-gradient-to-r from-[#EF7D31] to-[#4A90E2] text-white text-sm font-medium rounded-full">
-                        Published
+                        Published.
                       </span>
                     </div>
 
